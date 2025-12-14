@@ -1,9 +1,12 @@
 import "./globals.css"
 import Header from "@/components/Header"
+import { Inter } from "next/font/google"
+
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Diego.dev | Portfolio",
-  description: "Portfolio de Diego - Desenvolvedor Front-end",
+  title: "Diego Ortiz | Desenvolvedor",
+  description: "Portfolio de Diego - Desenvolvedor",
 }
 
 export default function RootLayout({
@@ -13,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className="bg-zinc-950 text-white">
+      <body className={`${inter.className} bg-zinc-950 text-white`}>
         <Header />
         {children}
       </body>
