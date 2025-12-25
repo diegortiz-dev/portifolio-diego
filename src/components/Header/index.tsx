@@ -6,13 +6,17 @@ export default function Header() {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <Link href="/" className={styles.logo}>
-          Diego<span className={styles.logoDot}>.</span>Ortiz
+          <span className={styles.logoText}>
+            <span className={styles.logoAccent}>&lt;</span>
+            Ortiz
+            <span className={styles.logoAccent}>/&gt;</span>
+          </span>
         </Link>
 
         <ul className={styles.navList}>
           <li>
-            <Link href="#projects" className={styles.navLink}>
-              Projetos
+            <Link href="/" className={styles.navLink}>
+              Home
             </Link>
           </li>
           <li>
@@ -21,11 +25,20 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link href="#contact" className={styles.navLink}>
-              Contato
+            <Link href="#projects" className={styles.navLink}>
+              Projetos
+            </Link>
+          </li>
+          <li>
+            <Link href="#skills" className={styles.navLink}>
+              Skills
             </Link>
           </li>
         </ul>
+
+        <Link href="#contact" className={styles.ctaButton}>
+          Contato
+        </Link>
       </nav>
     </header>
   )
