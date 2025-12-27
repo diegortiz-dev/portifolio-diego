@@ -1,12 +1,14 @@
 "use client"
 
 import { useState } from "react"
+import { useIntersectionObserver } from "@/hooks"
+import { CopyIcon, CheckIcon } from "@/components/Icons"
 import styles from "./About.module.css"
 
 const codeContent = `export const diego = {
   name: "Diego Ortiz",
   age: 18,
-  role: "Desenvolvedor",
+  role: "Desenvolvedor Full Stack",
 
   contact: {
     email: "ortizdtz@gmail.com",
@@ -20,19 +22,19 @@ const codeContent = `export const diego = {
     tools: ["Git", "GitHub"]
   },
 
-goals: [
-  "Desenvolver interfaces focadas em usabilidade e performance.",
-  "Criar produtos digitais com código limpo e escalável.",
-  "Unir design e engenharia para soluções eficientes.",
-  "Construir experiências pensadas para o usuário final."
-]
+  goals: [
+    "Desenvolver interfaces focadas em usabilidade e performance.",
+    "Criar produtos digitais com código limpo e escalável.",
+    "Unir design e engenharia para soluções eficientes.",
+    "Construir experiências pensadas para o usuário final."
+  ]
 }`
 
 // Highlighted code for display
 const highlightedCode = `<span class="keyword">export const</span> <span class="variable">diego</span> <span class="operator">=</span> {
   <span class="property">name</span>: <span class="string">"Diego Ortiz"</span>,
   <span class="property">age</span>: <span class="number">18</span>,
-  <span class="property">role</span>: <span class="string">"Desenvolvedor"</span>,
+  <span class="property">role</span>: <span class="string">"Desenvolvedor Full Stack"</span>,
 
   <span class="property">contact</span>: {
     <span class="property">email</span>: <span class="string">"ortizdtz@gmail.com"</span>,
@@ -57,57 +59,69 @@ const highlightedCode = `<span class="keyword">export const</span> <span class="
 
 export default function About() {
   const [copied, setCopied] = useState(false)
+  const [ref, isVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.1 })
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(codeContent)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(codeContent)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error("Failed to copy:", err)
+    }
   }
 
   return (
-    <section id="about" className={styles.about}>
+    <section
+      id="about"
+      className={`${styles.about} ${isVisible ? styles.visible : ""}`}
+      ref={ref}
+    >
       <div className={styles.container}>
-        {/* Code Block */}
+        {/* Bloco de Código */}
         <div className={styles.codeWrapper}>
           <div className={styles.codeHeader}>
+            <div className={styles.windowControls}>
+              <span className={styles.windowDot} data-color="red" />
+              <span className={styles.windowDot} data-color="yellow" />
+              <span className={styles.windowDot} data-color="green" />
+            </div>
             <div className={styles.codeTabs}>
-              <span className={styles.codeTabActive}>TypeScript</span>
-              <span className={styles.codeTab}>About.ts</span>
+              <span className={styles.codeTabActive}>about.ts</span>
             </div>
             <button
               className={styles.copyButton}
               onClick={handleCopy}
-              aria-label="Copiar código"
+              aria-label={copied ? "Código copiado" : "Copiar código"}
             >
-              {copied ? (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              ) : (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                </svg>
-              )}
+              {copied ? <CheckIcon size={16} /> : <CopyIcon size={16} />}
+              <span className={styles.copyText}>{copied ? "Copiado!" : "Copiar"}</span>
             </button>
           </div>
-          <pre className={styles.codeBlock}>
-            <code dangerouslySetInnerHTML={{ __html: highlightedCode }} />
-          </pre>
+          <div className={styles.codeContent}>
+            <div className={styles.lineNumbers} aria-hidden="true">
+              {Array.from({ length: 24 }, (_, i) => (
+                <span key={i + 1}>{i + 1}</span>
+              ))}
+            </div>
+            <pre className={styles.codeBlock}>
+              <code dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+            </pre>
+          </div>
         </div>
 
-        {/* Text Content */}
+        {/* Conteúdo de Texto */}
         <div className={styles.content}>
           <span className={styles.badge}>Desenvolvedor</span>
           
           <h2 className={styles.title}>
-            Transformando ideias em<br />
-            experiências digitais
+            Criando<br />
+            <span className={styles.titleAccent}>experiências</span>
           </h2>
 
           <div className={styles.description}>
             <p>
-              Meu nome é <span className={styles.highlight}>Diego</span>, tenho 18 anos e estudo{" "}
+              Meu nome é <span className={styles.highlight}>Diego Ortiz</span>, tenho 18 anos e estudo{" "}
               <span className={styles.highlightAccent}>desenvolvimento de software</span>.
             </p>
 

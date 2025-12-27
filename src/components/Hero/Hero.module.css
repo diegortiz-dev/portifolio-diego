@@ -113,11 +113,13 @@
 }
 
 .titleAccent {
+  display: block;
   font-size: clamp(2.5rem, 7vw, 4.5rem);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;
   color: #38BDF8;
+  margin-top: 0.25rem;
 }
 
 /* Efeito de digitação */
@@ -147,8 +149,15 @@
 }
 
 /* Botão de contato */
-.ctaButton {
+.ctaGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin-top: 2.5rem;
+  animation: fadeInUp 0.6s ease-out 0.3s backwards;
+}
+
+.ctaButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -161,7 +170,6 @@
   border-radius: var(--radius-xl);
   text-decoration: none;
   transition: var(--transition-base);
-  animation: fadeInUp 0.6s ease-out 0.3s backwards;
   box-shadow: 0 4px 15px rgba(125, 211, 252, 0.25);
 }
 
@@ -169,6 +177,60 @@
   background: #38BDF8;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(125, 211, 252, 0.35);
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  background: transparent;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+.ctaSecondary:hover {
+  color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+  background: var(--color-accent-subtle);
+}
+
+/* Indicador de Scroll */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-text-tertiary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  animation: bounce 2s ease-in-out infinite;
+  transition: var(--transition-base);
+}
+
+.scrollIndicator:hover {
+  color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
 }
 
 /* Card de perfil */

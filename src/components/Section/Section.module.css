@@ -1,0 +1,28 @@
+/* Componente Section */
+.section {
+  padding: 6rem 2rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.primary {
+  background: var(--color-bg-primary);
+}
+
+.secondary {
+  background: var(--color-bg-secondary);
+}
+
+.fullHeight {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

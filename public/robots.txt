@@ -1,0 +1,6 @@
+# www.diegortiz.dev
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://diegortiz.dev/sitemap.xml
