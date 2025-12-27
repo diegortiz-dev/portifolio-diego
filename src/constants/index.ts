@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   role: "Desenvolvedor Full Stack",
   email: "ortizdtz@gmail.com",
   github: "https://github.com/diegortiz-dev",
-  linkedin: "https://linkedin.com/in/diegortiz-dev",
+  whatsapp: "https://wa.me/5535910188806",
   title: "Diego Ortiz | Desenvolvedor Full Stack",
   description:
     "Portfolio de Diego Ortiz - Desenvolvedor especializado em criar experiências digitais modernas e impactantes com React, Next.js e TypeScript.",
@@ -25,9 +25,9 @@ export const SOCIAL_LINKS = [
     icon: "github",
   },
   {
-    name: "LinkedIn",
-    href: "https://linkedin.com/in/diegortiz-dev",
-    icon: "linkedin",
+    name: "WhatsApp",
+    href: "https://wa.me/5535910188806",
+    icon: "whatsapp",
   },
   {
     name: "Email",

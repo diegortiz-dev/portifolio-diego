@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { SITE_CONFIG, NAV_LINKS, SOCIAL_LINKS } from "@/constants"
-import { GithubIcon, LinkedInIcon, EmailIcon } from "@/components/Icons"
+import { GithubIcon, WhatsAppIcon, EmailIcon } from "@/components/Icons"
 import styles from "./Footer.module.css"
 
 export default function Footer() {
@@ -10,8 +10,8 @@ export default function Footer() {
     switch (iconName) {
       case "github":
         return <GithubIcon size={18} />
-      case "linkedin":
-        return <LinkedInIcon size={18} />
+      case "whatsapp":
+        return <WhatsAppIcon size={18} />
       case "email":
         return <EmailIcon size={18} />
       default:

@@ -3,7 +3,7 @@
 import { useState, FormEvent } from "react"
 import { useIntersectionObserver } from "@/hooks"
 import { SOCIAL_LINKS, SITE_CONFIG } from "@/constants"
-import { GithubIcon, LinkedInIcon, EmailIcon, SendIcon } from "@/components/Icons"
+import { GithubIcon, WhatsAppIcon, EmailIcon, SendIcon } from "@/components/Icons"
 import styles from "./Contact.module.css"
 
 interface FormData {
@@ -94,8 +94,8 @@ export default function Contact() {
     switch (iconName) {
       case "github":
         return <GithubIcon size={20} />
-      case "linkedin":
-        return <LinkedInIcon size={20} />
+      case "whatsapp":
+        return <WhatsAppIcon size={20} />
       case "email":
         return <EmailIcon size={20} />
       default:
