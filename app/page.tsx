@@ -5,7 +5,7 @@ import Contact from "@/components/Contact"
 
 export default function Home() {
   return (
-    <main>
+    <main aria-label="Página principal do portfólio de Diego Ortiz">
       <Hero />
       <About />
       <Projects />
