@@ -67,7 +67,7 @@ export default function Projects() {
                     src={project.image}
                     alt={`Screenshot do projeto ${project.title}`}
                     fill
-                    className={`${styles.featuredImage} ${project.id === 'investimentos-dashboard' ? styles.featuredImageContain : ''}`}
+                    className={styles.featuredImage}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 ) : (
