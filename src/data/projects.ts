@@ -2,6 +2,15 @@ import { Project } from "@/types/project"
 
 export const projects: Project[] = [
   {
+    id: "focus-flow",
+    title: "Focus Flow",
+    description: "Landing page moderna e responsiva para o FocusFlow - aplicativo de produtividade com técnica Pomodoro.",
+    techs: ["React", "Next.js", "Tailwind CSS"],
+    category: "frontend",
+    github: "https://github.com/diegortiz-dev/focusflow-landing.git",
+    featured: true,
+  },
+  {
     id: "aurora-coffee",
     title: "Aurora Coffee",
     description:
@@ -10,7 +19,7 @@ export const projects: Project[] = [
       "Uma experiência digital completa para uma cafeteria fictícia, com foco em design minimalista, micro-interações e otimização para dispositivos móveis.",
     techs: ["HTML", "CSS", "JavaScript"],
     category: "frontend",
-    github: "https://github.com/diegortiz-dev/coffee-page",
+    github: "https://github.com/diegortiz-dev/coffe-page",
     featured: true,
     image: "/projects/aurora-coffee.jpg",
   },
@@ -22,7 +31,7 @@ export const projects: Project[] = [
     techs: ["React", "Next.js", "TypeScript", "CSS Modules"],
     category: "frontend",
     github: "https://github.com/diegortiz-dev/portifolio-diego",
-    featured: true,
+    featured: false,
   },
   {
     id: "task-manager",
@@ -44,14 +53,7 @@ export const projects: Project[] = [
     github: "https://github.com/diegortiz-dev/weather-dashboard",
     featured: true,
   },
-  {
-    id:"focus-flow",
-    title: "Focus Flow",
-    description: "Landing page moderna e responsiva para o FocusFlow - aplicativo de produtividade com técnica Pomodoro.",
-    techs: ["React", "Next.js","Tailwind CSS"],
-    category: "frontend",
-    github: "https://github.com/diegortiz-dev/focusflow-landing.git",
-  }
+
 ]
 
 export const projectCategories = [

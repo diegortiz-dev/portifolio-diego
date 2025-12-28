@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useRef } from "react"
 
 interface UseTypewriterOptions {
   words: readonly string[]
@@ -24,39 +24,40 @@ export function useTypewriter({
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [displayText, setDisplayText] = useState("")
   const [isDeleting, setIsDeleting] = useState(false)
-
-  const currentWord = words[currentWordIndex]
-
-  const handleTyping = useCallback(() => {
-    if (!isDeleting && displayText === currentWord) {
-      // Palavra completa, pausa antes de deletar
-      const timeout = setTimeout(() => setIsDeleting(true), pauseDuration)
-      return () => clearTimeout(timeout)
-    }
-
-    if (isDeleting && displayText === "") {
-      // Deletou tudo, vai para próxima palavra
-      setIsDeleting(false)
-      setCurrentWordIndex((prev) => (prev + 1) % words.length)
-      return
-    }
-
-    const speed = isDeleting ? deletingSpeed : typingSpeed
-    const timeout = setTimeout(() => {
-      setDisplayText((prev) =>
-        isDeleting
-          ? currentWord.substring(0, prev.length - 1)
-          : currentWord.substring(0, prev.length + 1)
-      )
-    }, speed)
-
-    return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, currentWord, words.length, typingSpeed, deletingSpeed, pauseDuration])
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
-    const cleanup = handleTyping()
-    return cleanup
-  }, [handleTyping])
+    const currentWord = words[currentWordIndex]
+
+    const tick = () => {
+      if (!isDeleting && displayText === currentWord) {
+        // Palavra completa, pausa antes de deletar
+        timeoutRef.current = setTimeout(() => setIsDeleting(true), pauseDuration)
+      } else if (isDeleting && displayText === "") {
+        // Deletou tudo, vai para próxima palavra
+        setIsDeleting(false)
+        setCurrentWordIndex((prev) => (prev + 1) % words.length)
+      } else {
+        // Digitando ou deletando
+        const speed = isDeleting ? deletingSpeed : typingSpeed
+        timeoutRef.current = setTimeout(() => {
+          setDisplayText((prev) =>
+            isDeleting
+              ? currentWord.substring(0, prev.length - 1)
+              : currentWord.substring(0, prev.length + 1)
+          )
+        }, speed)
+      }
+    }
+
+    tick()
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [displayText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, pauseDuration])
 
   return {
     displayText,

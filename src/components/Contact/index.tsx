@@ -77,9 +77,16 @@ export default function Contact() {
     setSubmitStatus("idle")
 
     try {
-      // Simula envio do formulário
-      // Em produção, substitua por uma chamada real à API
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      // Monta a mensagem para WhatsApp
+      const message = `*Nova mensagem do Portfolio*%0A%0A` +
+        `*Nome:* ${formData.name}%0A` +
+        `*Email:* ${formData.email}%0A` +
+        `${formData.subject ? `*Assunto:* ${formData.subject}%0A` : ""}` +
+        `*Mensagem:* ${formData.message}`
+      
+      // Abre WhatsApp com a mensagem
+      const whatsappUrl = `https://wa.me/5535910188806?text=${encodeURIComponent(message.replace(/%0A/g, "\n"))}`
+      window.open(whatsappUrl, "_blank")
       
       setSubmitStatus("success")
       setFormData(initialFormData)

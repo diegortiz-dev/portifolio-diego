@@ -115,8 +115,8 @@ export default function About() {
           <span className={styles.badge}>Desenvolvedor</span>
           
           <h2 className={styles.title}>
-            Criando<br />
-            <span className={styles.titleAccent}>experiências</span>
+            Desenvolvendo soluções<br />
+            <span className={styles.titleAccent}>com propósito</span>
           </h2>
 
           <div className={styles.description}>

@@ -62,7 +62,7 @@ export default function Button({
   )
 
   if (props.as === "link") {
-    const { as, href, ...linkProps } = props
+    const { as: _, href, ...linkProps } = props
     return (
       <Link href={href} className={buttonClasses} {...linkProps}>
         {content}
@@ -71,7 +71,7 @@ export default function Button({
   }
 
   if (props.as === "a") {
-    const { as, external, ...anchorProps } = props
+    const { as: _, external, ...anchorProps } = props
     return (
       <a
         className={buttonClasses}
@@ -86,7 +86,7 @@ export default function Button({
     )
   }
 
-  const { as, ...buttonProps } = props as ButtonAsButton
+  const { as: _, ...buttonProps } = props as ButtonAsButton
   return (
     <button className={buttonClasses} {...buttonProps}>
       {content}
