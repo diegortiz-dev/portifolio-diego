@@ -42,6 +42,52 @@ export default function Header() {
     [closeMenu]
   )
 
+  const smoothScrollTo = useCallback((targetPosition: number) => {
+    const startPosition = window.pageYOffset
+    const distance = targetPosition - startPosition
+    const duration = 1000
+    let start: number | null = null
+
+    const animation = (currentTime: number) => {
+      if (start === null) start = currentTime
+      const timeElapsed = currentTime - start
+      const progress = Math.min(timeElapsed / duration, 1)
+      
+      // Easing function - easeInOutCubic
+      const easeProgress = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2
+
+      window.scrollTo(0, startPosition + distance * easeProgress)
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation)
+      }
+    }
+
+    requestAnimationFrame(animation)
+  }, [])
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    closeMenu()
+    
+    // Se for o link Home (/), vai para o topo
+    if (href === '/') {
+      smoothScrollTo(0)
+      return
+    }
+    
+    const targetId = href.replace('#', '')
+    const targetElement = document.getElementById(targetId)
+    
+    if (targetElement) {
+      const headerOffset = 80
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerOffset
+      smoothScrollTo(targetPosition)
+    }
+  }, [closeMenu, smoothScrollTo])
+
   return (
     <header
       className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}
@@ -60,16 +106,24 @@ export default function Header() {
         <ul className={styles.navList}>
           {NAV_LINKS.slice(0, -1).map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className={styles.navLink}>
+              <a 
+                href={link.href} 
+                className={styles.navLink}
+                onClick={(e) => handleNavClick(e, link.href)}
+              >
                 {link.label}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
 
-        <Link href="#contact" className={styles.ctaButton}>
+        <a 
+          href="#contact" 
+          className={styles.ctaButton}
+          onClick={(e) => handleNavClick(e, '#contact')}
+        >
           Contato
-        </Link>
+        </a>
 
         {/* Botão do Menu Mobile */}
         <button
@@ -94,13 +148,13 @@ export default function Header() {
               className={styles.mobileNavItem}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <Link
+              <a
                 href={link.href}
                 className={styles.mobileNavLink}
-                onClick={closeMenu}
+                onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>

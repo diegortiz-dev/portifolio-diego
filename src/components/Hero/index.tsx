@@ -26,6 +26,38 @@ export default function Hero() {
     pauseDuration: 2000,
   })
 
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault()
+    const targetElement = document.getElementById(targetId)
+    
+    if (targetElement) {
+      const headerOffset = 80
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerOffset
+      const startPosition = window.pageYOffset
+      const distance = targetPosition - startPosition
+      const duration = 1100
+      let start: number | null = null
+
+      const animation = (currentTime: number) => {
+        if (start === null) start = currentTime
+        const timeElapsed = currentTime - start
+        const progress = Math.min(timeElapsed / duration, 1)
+        
+        const easeProgress = progress < 0.5
+          ? 4 * progress * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2
+
+        window.scrollTo(0, startPosition + distance * easeProgress)
+
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation)
+        }
+      }
+
+      requestAnimationFrame(animation)
+    }
+  }
+
   return (
     <section className={styles.hero}>
       {/* Efeitos de gradiente do fundo */}
@@ -54,10 +86,18 @@ export default function Hero() {
           </div>
 
           <div className={styles.ctaGroup}>
-            <a href="#contact" className={styles.ctaButton}>
+            <a 
+              href="#contact" 
+              className={styles.ctaButton}
+              onClick={(e) => handleScrollTo(e, 'contact')}
+            >
               Entrar em Contato
             </a>
-            <a href="#projects" className={styles.ctaSecondary}>
+            <a 
+              href="#projects" 
+              className={styles.ctaSecondary}
+              onClick={(e) => handleScrollTo(e, 'projects')}
+            >
               Ver Projetos
             </a>
           </div>
