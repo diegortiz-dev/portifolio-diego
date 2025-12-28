@@ -36,7 +36,6 @@ export const projects: Project[] = [
     category: "frontend",
     github: "https://github.com/diegortiz-dev/coffe-page",
     featured: false,
-    image: "/projects/aurora-coffee.png",
   },
   {
     id: "portfolio-v1",

@@ -1,4 +1,3 @@
-# www.diegortiz.dev
 User-agent: *
 Allow: /
 
