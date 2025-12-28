@@ -134,6 +134,22 @@
   overflow: hidden;
 }
 
+.featuredImage {
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.4s ease;
+}
+
+.featuredImageContain {
+  object-fit: contain;
+  object-position: center;
+  background: var(--color-bg-tertiary);
+}
+
+.featuredCard:hover .featuredImage {
+  transform: scale(1.05);
+}
+
 .featuredImagePlaceholder {
   width: 100%;
   height: 100%;

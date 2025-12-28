@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
+import Image from "next/image"
 import { projects, projectCategories, ProjectCategory } from "@/data/projects"
 import { useIntersectionObserver } from "@/hooks"
 import { GithubIcon, ExternalLinkIcon, FolderIcon } from "@/components/Icons"
@@ -61,9 +62,19 @@ export default function Projects() {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className={styles.featuredImageWrapper}>
-                <div className={styles.featuredImagePlaceholder}>
-                  <FolderIcon size={48} />
-                </div>
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={`Screenshot do projeto ${project.title}`}
+                    fill
+                    className={`${styles.featuredImage} ${project.id === 'investimentos-dashboard' ? styles.featuredImageContain : ''}`}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                ) : (
+                  <div className={styles.featuredImagePlaceholder}>
+                    <FolderIcon size={48} />
+                  </div>
+                )}
                 <div className={styles.featuredOverlay}>
                   <div className={styles.featuredLinks}>
                     <a

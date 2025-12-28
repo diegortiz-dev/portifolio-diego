@@ -9,6 +9,21 @@ export const projects: Project[] = [
     category: "frontend",
     github: "https://github.com/diegortiz-dev/focusflow-landing.git",
     featured: true,
+    image: "/projects/focus-flow.png",
+    longDescription:
+      "Uma landing page moderna e responsiva para o aplicativo FocusFlow, com foco em design minimalista, micro-interações e otimização para dispositivos móveis. Projeto focado em performance e acessibilidade.",
+  },
+  {
+    id: "investimentos-dashboard",
+    title: "Investimentos Balance",
+    description: "Dashboard moderno e simples de utilizar para gerenciamento de portfólio de investimentos com rebalanceamento automático.",
+    techs: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    category: "fullstack",
+    github: "https://github.com/diegortiz-dev/portfolio-balance-dashboard.git",
+    featured: true,
+    image: "/projects/investimentos-dashboard.png",
+    longDescription:
+      "Um dashboard completo para gerenciamento de portfólio de investimentos, com funcionalidades de rebalanceamento automático, visualização de alocação e acompanhamento de performance.",
   },
   {
     id: "aurora-coffee",
@@ -20,8 +35,8 @@ export const projects: Project[] = [
     techs: ["HTML", "CSS", "JavaScript"],
     category: "frontend",
     github: "https://github.com/diegortiz-dev/coffe-page",
-    featured: true,
-    image: "/projects/aurora-coffee.jpg",
+    featured: false,
+    image: "/projects/aurora-coffee.png",
   },
   {
     id: "portfolio-v1",
@@ -51,9 +66,8 @@ export const projects: Project[] = [
     techs: ["React", "TypeScript", "Tailwind CSS", "API REST"],
     category: "fullstack",
     github: "https://github.com/diegortiz-dev/weather-dashboard",
-    featured: true,
+    featured: false,
   },
-
 ]
 
 export const projectCategories = [
