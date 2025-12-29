@@ -4,17 +4,49 @@ import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import { NAV_LINKS } from "@/constants"
 import { useScrollDirection } from "@/hooks"
-import { MenuIcon, CloseIcon } from "@/components/Icons"
+import { MenuIcon, CloseIcon, HomeIcon, UserIcon, BriefcaseIcon, PencilIcon } from "@/components/Icons"
 import styles from "./Header.module.css"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState("/")
   const { scrollY } = useScrollDirection()
 
   useEffect(() => {
     setIsScrolled(scrollY > 50)
   }, [scrollY])
+
+  // Track active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['contact', 'projects', 'about']
+      const scrollPosition = window.scrollY + 200
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          const offsetTop = element.offsetTop
+          const offsetHeight = element.offsetHeight
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(`#${sectionId}`)
+            return
+          }
+        }
+      }
+      
+      // If no section is active, we're at the top (Home)
+      if (window.scrollY < 200) {
+        setActiveSection('/')
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Check initial position
+    
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -168,6 +200,54 @@ export default function Header() {
           aria-hidden="true"
         />
       )}
+
+      {/* Navegação Mobile Bottom Bar */}
+      <nav className={styles.mobileBottomNav} aria-label="Navegação mobile">
+        <a
+          href="/"
+          className={`${styles.mobileBottomLink} ${activeSection === '/' ? styles.active : ''}`}
+          onClick={(e) => handleNavClick(e, '/')}
+          aria-label="Home"
+        >
+          <span className={styles.iconWrapper}>
+            <HomeIcon size={22} />
+          </span>
+          <span className={styles.linkLabel}>Home</span>
+        </a>
+        <a
+          href="#about"
+          className={`${styles.mobileBottomLink} ${activeSection === '#about' ? styles.active : ''}`}
+          onClick={(e) => handleNavClick(e, '#about')}
+          aria-label="Sobre"
+        >
+          <span className={styles.iconWrapper}>
+            <UserIcon size={22} />
+          </span>
+          <span className={styles.linkLabel}>Sobre</span>
+        </a>
+        <a
+          href="#projects"
+          className={`${styles.mobileBottomLink} ${activeSection === '#projects' ? styles.active : ''}`}
+          onClick={(e) => handleNavClick(e, '#projects')}
+          aria-label="Projetos"
+        >
+          <span className={styles.iconWrapper}>
+            <BriefcaseIcon size={22} />
+          </span>
+          <span className={styles.linkLabel}>Projetos</span>
+        </a>
+        <a
+          href="#contact"
+          className={`${styles.mobileBottomLink} ${activeSection === '#contact' ? styles.active : ''}`}
+          onClick={(e) => handleNavClick(e, '#contact')}
+          aria-label="Contato"
+        >
+          <span className={styles.iconWrapper}>
+            <PencilIcon size={22} />
+          </span>
+          <span className={styles.linkLabel}>Contato</span>
+        </a>
+      </nav>
     </header>
   )
 }
