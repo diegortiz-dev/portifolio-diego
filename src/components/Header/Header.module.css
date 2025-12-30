@@ -370,6 +370,14 @@
 /* Esconder bottom nav em desktop */
 @media (min-width: 769px) {
   .mobileBottomNav {
-    display: none;
+    display: none !important;
+  }
+}
+
+/* Garantir posicionamento correto em iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  .mobileBottomNav {
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
+    top: auto !important;
   }
 }

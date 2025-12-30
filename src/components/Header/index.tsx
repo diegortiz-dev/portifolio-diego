@@ -121,6 +121,7 @@ export default function Header() {
   }, [closeMenu, smoothScrollTo])
 
   return (
+    <>
     <header
       className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}
       onKeyDown={handleKeyDown}
@@ -200,54 +201,55 @@ export default function Header() {
           aria-hidden="true"
         />
       )}
-
-      {/* Navegação Mobile Bottom Bar */}
-      <nav className={styles.mobileBottomNav} aria-label="Navegação mobile">
-        <a
-          href="/"
-          className={`${styles.mobileBottomLink} ${activeSection === '/' ? styles.active : ''}`}
-          onClick={(e) => handleNavClick(e, '/')}
-          aria-label="Home"
-        >
-          <span className={styles.iconWrapper}>
-            <HomeIcon size={22} />
-          </span>
-          <span className={styles.linkLabel}>Home</span>
-        </a>
-        <a
-          href="#about"
-          className={`${styles.mobileBottomLink} ${activeSection === '#about' ? styles.active : ''}`}
-          onClick={(e) => handleNavClick(e, '#about')}
-          aria-label="Sobre"
-        >
-          <span className={styles.iconWrapper}>
-            <UserIcon size={22} />
-          </span>
-          <span className={styles.linkLabel}>Sobre</span>
-        </a>
-        <a
-          href="#projects"
-          className={`${styles.mobileBottomLink} ${activeSection === '#projects' ? styles.active : ''}`}
-          onClick={(e) => handleNavClick(e, '#projects')}
-          aria-label="Projetos"
-        >
-          <span className={styles.iconWrapper}>
-            <BriefcaseIcon size={22} />
-          </span>
-          <span className={styles.linkLabel}>Projetos</span>
-        </a>
-        <a
-          href="#contact"
-          className={`${styles.mobileBottomLink} ${activeSection === '#contact' ? styles.active : ''}`}
-          onClick={(e) => handleNavClick(e, '#contact')}
-          aria-label="Contato"
-        >
-          <span className={styles.iconWrapper}>
-            <PencilIcon size={22} />
-          </span>
-          <span className={styles.linkLabel}>Contato</span>
-        </a>
-      </nav>
     </header>
+
+    {/* Navegação Mobile Bottom Bar - Fora do header para evitar problemas de posicionamento no iOS */}
+    <nav className={styles.mobileBottomNav} aria-label="Navegação mobile">
+      <a
+        href="/"
+        className={`${styles.mobileBottomLink} ${activeSection === '/' ? styles.active : ''}`}
+        onClick={(e) => handleNavClick(e, '/')}
+        aria-label="Home"
+      >
+        <span className={styles.iconWrapper}>
+          <HomeIcon size={22} />
+        </span>
+        <span className={styles.linkLabel}>Home</span>
+      </a>
+      <a
+        href="#about"
+        className={`${styles.mobileBottomLink} ${activeSection === '#about' ? styles.active : ''}`}
+        onClick={(e) => handleNavClick(e, '#about')}
+        aria-label="Sobre"
+      >
+        <span className={styles.iconWrapper}>
+          <UserIcon size={22} />
+        </span>
+        <span className={styles.linkLabel}>Sobre</span>
+      </a>
+      <a
+        href="#projects"
+        className={`${styles.mobileBottomLink} ${activeSection === '#projects' ? styles.active : ''}`}
+        onClick={(e) => handleNavClick(e, '#projects')}
+        aria-label="Projetos"
+      >
+        <span className={styles.iconWrapper}>
+          <BriefcaseIcon size={22} />
+        </span>
+        <span className={styles.linkLabel}>Projetos</span>
+      </a>
+      <a
+        href="#contact"
+        className={`${styles.mobileBottomLink} ${activeSection === '#contact' ? styles.active : ''}`}
+        onClick={(e) => handleNavClick(e, '#contact')}
+        aria-label="Contato"
+      >
+        <span className={styles.iconWrapper}>
+          <PencilIcon size={22} />
+        </span>
+        <span className={styles.linkLabel}>Contato</span>
+      </a>
+    </nav>
+    </>
   )
 }
