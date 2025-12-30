@@ -23,9 +23,9 @@ export default function Icon() {
           fontWeight: "bold",
         }}
       >
-        <span style={{ color: "#22C55E" }}>&lt;</span>
+        <span style={{ color: "#7DD3FC" }}>&lt;</span>
         <span style={{ color: "#fff" }}>O</span>
-        <span style={{ color: "#22C55E" }}>/&gt;</span>
+        <span style={{ color: "#7DD3FC" }}>/&gt;</span>
       </div>
     ),
     {
