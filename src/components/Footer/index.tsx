@@ -1,6 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import { SITE_CONFIG, NAV_LINKS, SOCIAL_LINKS } from "@/constants"
-import { GithubIcon, WhatsAppIcon, EmailIcon } from "@/components/Icons"
+import { GithubIcon, WhatsAppIcon, EmailIcon, ChevronDownIcon } from "@/components/Icons"
 import styles from "./Footer.module.css"
 
 export default function Footer() {
@@ -81,6 +83,13 @@ export default function Footer() {
           <p className={styles.copyright}>
             © {currentYear} {SITE_CONFIG.name}. Todos os direitos reservados.
           </p>
+          <button
+            className={styles.backToTop}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Voltar ao topo"
+          >
+            <ChevronDownIcon size={18} />
+          </button>
         </div>
       </div>
     </footer>

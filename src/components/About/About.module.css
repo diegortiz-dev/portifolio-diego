@@ -111,9 +111,9 @@
 }
 
 .copyButton:hover {
-  color: var(--color-text-primary);
-  border-color: var(--color-border-default);
-  background: var(--color-bg-elevated);
+  color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+  background: var(--color-accent-subtle);
 }
 
 .copyText {
@@ -156,6 +156,12 @@
   overflow-x: auto;
   color: var(--color-text-secondary);
   flex: 1;
+}
+
+.codeBlock::selection,
+.codeBlock *::selection {
+  background: rgba(125, 211, 252, 0.3);
+  color: var(--color-text-primary);
 }
 
 /* Cores do syntax highlighting */

@@ -6,9 +6,9 @@ export const SITE_CONFIG = {
   email: "ortizdtz@gmail.com",
   github: "https://github.com/diegortiz-dev",
   whatsapp: "https://wa.me/5535910188806",
-  title: "Diego Ortiz | Desenvolvedor Full Stack",
+  title: "Diego Ortiz | Desenvolvedor",
   description:
-    "Portfolio de Diego Ortiz - Desenvolvedor especializado em criar experiências digitais modernas e impactantes com React, Next.js e TypeScript.",
+    "Diego Ortiz - Desenvolvedor especializado em criar experiências digitais modernas e impactantes.",
 } as const
 
 export const NAV_LINKS = [

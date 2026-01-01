@@ -1,8 +1,10 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { useTypewriter } from "@/hooks"
 import { HERO_ROLES } from "@/constants"
 import { ChevronDownIcon } from "@/components/Icons"
+import Particles from "@/components/Particles"
 import styles from "./Hero.module.css"
 
 // Ícones das Tecnologias
@@ -22,12 +24,23 @@ const techIcons = [
 ]
 
 export default function Hero() {
+  const [scrollY, setScrollY] = useState(0)
+  
   const { displayText } = useTypewriter({
     words: HERO_ROLES,
     typingSpeed: 100,
     deletingSpeed: 50,
     pauseDuration: 2000,
   })
+
+  // Efeito parallax
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault()
@@ -63,21 +76,33 @@ export default function Hero() {
 
   return (
     <section className={styles.hero}>
-      {/* Efeitos de gradiente do fundo */}
+      {/* Partículas interativas */}
+      <Particles count={60} />
+      
+      {/* Efeitos de gradiente do fundo com parallax */}
       <div className={styles.background} aria-hidden="true">
-        <div className={styles.gradientOrb1} />
-        <div className={styles.gradientOrb2} />
-        <div className={styles.gradientOrb3} />
+        <div 
+          className={styles.gradientOrb1} 
+          style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)` }}
+        />
+        <div 
+          className={styles.gradientOrb2} 
+          style={{ transform: `translate(${scrollY * -0.08}px, ${scrollY * 0.03}px)` }}
+        />
+        <div 
+          className={styles.gradientOrb3} 
+          style={{ transform: `translate(${scrollY * 0.05}px, ${scrollY * -0.02}px)` }}
+        />
       </div>
 
-      <div className={styles.container}>
+      <div className={styles.container} style={{ transform: `translateY(${scrollY * 0.2}px)` }}>
         {/* Conteúdo principal */}
         <div className={styles.content}>
           <p className={styles.greeting}>Olá, meu nome é Diego</p>
 
           <h1 className={styles.title}>
             <span className={styles.titleMain}>DESENVOLVEDOR</span>
-            <span className={styles.titleAccent}>FULL STACK</span>
+            <span className={styles.titleAccent}>DE SOFTWARE</span>
           </h1>
 
           <div className={styles.typewriter}>
@@ -116,10 +141,11 @@ export default function Hero() {
         </div>
         <div className={styles.techIcons}>
           {techIcons.map((tech) => (
-            <div key={tech.name} className={styles.techIcon} title={tech.name}>
+            <div key={tech.name} className={styles.techIcon}>
               <svg viewBox="0 0 24 24" fill="currentColor" aria-label={tech.name}>
                 <path d={tech.path} />
               </svg>
+              <span className={styles.techTooltip}>{tech.name}</span>
             </div>
           ))}
         </div>

@@ -198,6 +198,36 @@
   color: var(--color-accent-primary);
   border-color: var(--color-accent-primary);
   background: var(--color-accent-subtle);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--color-accent-glow);
+}
+
+.ctaDownload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+.ctaDownload:hover {
+  color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+  background: var(--color-accent-subtle);
+  transform: translateY(-2px);
+}
+
+.downloadIcon {
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 /* Indicador de Scroll */
@@ -339,6 +369,8 @@
   color: var(--color-accent-primary);
   border-color: var(--color-accent-primary);
   background: var(--color-accent-subtle);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-accent-glow);
 }
 
 .socialIcon {
@@ -385,6 +417,7 @@
 }
 
 .techIcon {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -401,8 +434,46 @@
 }
 
 .techIcon:hover {
-  color: var(--color-text-primary);
+  color: var(--color-accent-primary);
   transform: translateY(-4px) scale(1.1);
+}
+
+.techTooltip {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 0.375rem 0.75rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-md);
+  color: var(--color-accent-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+  pointer-events: none;
+  box-shadow: var(--shadow-md), 0 0 20px var(--color-accent-glow);
+}
+
+.techTooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--color-border-accent);
+}
+
+.techIcon:hover .techTooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Animações */
@@ -503,6 +574,11 @@
   .techIcon svg {
     width: 1.5rem;
     height: 1.5rem;
+  }
+
+  .techTooltip {
+    font-size: 0.625rem;
+    padding: 0.25rem 0.5rem;
   }
 }
 

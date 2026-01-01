@@ -101,7 +101,10 @@ export default function Projects() {
                 </div>
               </div>
               <div className={styles.featuredContent}>
-                <span className={styles.featuredCategory}>{project.category}</span>
+                <span className={styles.featuredCategory}>
+                  {project.category === 'frontend' ? 'Frontend' : 
+                   project.category === 'backend' ? 'Backend' : 'Full Stack'}
+                </span>
                 <h3 className={styles.featuredTitle}>{project.title}</h3>
                 <p className={styles.featuredDescription}>{project.description}</p>
                 <div className={styles.techList}>

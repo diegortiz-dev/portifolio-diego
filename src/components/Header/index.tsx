@@ -150,13 +150,15 @@ export default function Header() {
           ))}
         </ul>
 
-        <a 
-          href="#contact" 
-          className={styles.ctaButton}
-          onClick={(e) => handleNavClick(e, '#contact')}
-        >
-          Contato
-        </a>
+        <div className={styles.navActions}>
+          <a 
+            href="#contact" 
+            className={styles.ctaButton}
+            onClick={(e) => handleNavClick(e, '#contact')}
+          >
+            Contato
+          </a>
+        </div>
 
         {/* Botão do Menu Mobile */}
         <button

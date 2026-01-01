@@ -18,7 +18,7 @@ export const projects: Project[] = [
     title: "Investimentos Balance",
     description: "Dashboard moderno e simples de utilizar para gerenciamento de portfólio de investimentos com rebalanceamento automático.",
     techs: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-    category: "fullstack",
+    category: "frontend",
     github: "https://github.com/diegortiz-dev/portfolio-balance-dashboard.git",
     featured: true,
     image: "/projects/investimentos-dashboard.png",
@@ -63,7 +63,7 @@ export const projects: Project[] = [
     description:
       "Aplicação de previsão do tempo com geolocalização, gráficos interativos e integração com API externa.",
     techs: ["React", "TypeScript", "Tailwind CSS", "API REST"],
-    category: "fullstack",
+    category: "frontend",
     github: "https://github.com/diegortiz-dev/weather-dashboard",
     featured: false,
   },
