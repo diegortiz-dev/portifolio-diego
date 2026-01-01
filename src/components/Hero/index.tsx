@@ -95,7 +95,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className={styles.container} style={{ transform: `translateY(${scrollY * 0.2}px)` }}>
+      <div className={styles.container}>
         {/* Conteúdo principal */}
         <div className={styles.content}>
           <p className={styles.greeting}>Olá, meu nome é Diego</p>
