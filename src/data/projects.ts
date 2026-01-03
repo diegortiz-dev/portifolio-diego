@@ -64,7 +64,7 @@ export const projects: Project[] = [
       "Aplicação de previsão do tempo com geolocalização, gráficos interativos e integração com API externa.",
     techs: ["React", "TypeScript", "Tailwind CSS", "API REST"],
     category: "frontend",
-    github: "https://github.com/diegortiz-dev/weather-dashboard",
+    github: "https://github.com/diegortiz-dev/Weather-Dashboard.git",
     featured: false,
   },
 ]

@@ -1,4 +1,4 @@
-# 🚀 Diego.dev | Portfolio
+# 🚀 Diego | Portfolio
 
 Portfolio pessoal desenvolvido com as tecnologias mais modernas do mercado.
 
