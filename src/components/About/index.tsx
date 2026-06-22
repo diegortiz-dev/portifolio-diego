@@ -3,58 +3,57 @@
 import { useState } from "react"
 import { useIntersectionObserver } from "@/hooks"
 import { CopyIcon, CheckIcon } from "@/components/Icons"
+import { STATS, TIMELINE } from "@/constants"
 import styles from "./About.module.css"
 
 const codeContent = `export const diego = {
   name: "Diego Ortiz",
-  age: 18,
-  role: "Desenvolvedor Full Stack",
+  age: 19,
+  role: "Backend & Full Stack Developer",
+  location: "Brasil",
+  status: "Open to freelances",
+
+  education: {
+    course: "Análise e Desenvolvimento de Sistemas",
+    focus: "Engenharia de Software & Arquitetura Backend"
+  },
+
+  focus: [
+    "APIs RESTful escaláveis",
+    "Arquitetura de sistemas backend",
+    "Landing pages & sites institucionais",
+    "Código limpo, decisões conscientes"
+  ],
 
   contact: {
     email: "ortizdtz@gmail.com",
     github: "github.com/diegortiz-dev"
-  },
-
-  skills: {
-    frontend: ["React", "Next.js", "TypeScript", "JavaScript", 
-      "HTML5", "CSS3", "Tailwind CSS"],
-    backend: ["Node.js", "Python", "MySQL"],
-    tools: ["Git", "GitHub"]
-  },
-
-  goals: [
-    "Desenvolver interfaces focadas em usabilidade e performance.",
-    "Criar produtos digitais com código limpo e escalável.",
-    "Unir design e engenharia para soluções eficientes.",
-    "Construir experiências pensadas para o usuário final."
-  ]
+  }
 }`
 
-// Highlighted code for display
 const highlightedCode = `<span class="keyword">export const</span> <span class="variable">diego</span> <span class="operator">=</span> {
   <span class="property">name</span>: <span class="string">"Diego Ortiz"</span>,
-  <span class="property">age</span>: <span class="number">18</span>,
-  <span class="property">role</span>: <span class="string">"Desenvolvedor Full Stack"</span>,
+  <span class="property">age</span>: <span class="number">19</span>,
+  <span class="property">role</span>: <span class="string">"Backend &amp; Full Stack Developer"</span>,
+  <span class="property">location</span>: <span class="string">"Brasil"</span>,
+  <span class="property">status</span>: <span class="string">"Open to freelances"</span>,
+
+  <span class="property">education</span>: {
+    <span class="property">course</span>: <span class="string">"Análise e Desenvolvimento de Sistemas"</span>,
+    <span class="property">focus</span>: <span class="string">"Engenharia de Software &amp; Arquitetura Backend"</span>
+  },
+
+  <span class="property">focus</span>: [
+    <span class="string">"APIs RESTful escaláveis"</span>,
+    <span class="string">"Arquitetura de sistemas backend"</span>,
+    <span class="string">"Landing pages &amp; sites institucionais"</span>,
+    <span class="string">"Código limpo, decisões conscientes"</span>
+  ],
 
   <span class="property">contact</span>: {
     <span class="property">email</span>: <span class="string">"ortizdtz@gmail.com"</span>,
     <span class="property">github</span>: <span class="string">"github.com/diegortiz-dev"</span>
-  },
-
-  <span class="property">skills</span>: {
-    <span class="property">frontend</span>: [<span class="string">"React"</span>, <span class="string">"Next.js"</span>,
-      <span class="string">"TypeScript"</span>, <span class="string">"JavaScript"</span>, <span class="string">"HTML5"</span>,
-      <span class="string">"CSS3"</span>, <span class="string">"Tailwind CSS"</span>],
-    <span class="property">backend</span>: [<span class="string">"Node.js"</span>, <span class="string">"Python"</span>, <span class="string">"MySQL"</span>],
-    <span class="property">tools</span>: [<span class="string">"Git"</span>, <span class="string">"GitHub"</span>]
-  },
-
-  <span class="property">goals</span>: [
-    <span class="string">"Desenvolver interfaces focadas em usabilidade e performance."</span>,
-    <span class="string">"Criar produtos digitais com código limpo e escalável."</span>,
-    <span class="string">"Unir design e engenharia para soluções eficientes."</span>,
-    <span class="string">"Construir experiências pensadas para o usuário final."</span>
-  ]
+  }
 }`
 
 export default function About() {
@@ -78,81 +77,101 @@ export default function About() {
       ref={ref}
     >
       <div className={styles.container}>
-        {/* Bloco de Código */}
-        <div className={styles.codeWrapper}>
-          <div className={styles.codeHeader}>
-            <div className={styles.windowControls}>
-              <span className={styles.windowDot} data-color="red" />
-              <span className={styles.windowDot} data-color="yellow" />
-              <span className={styles.windowDot} data-color="green" />
+        {/* Bloco esquerdo: código + stats */}
+        <div className={styles.leftCol}>
+          <div className={styles.codeWrapper}>
+            <div className={styles.codeHeader}>
+              <div className={styles.windowControls}>
+                <span className={styles.windowDot} data-color="red" />
+                <span className={styles.windowDot} data-color="yellow" />
+                <span className={styles.windowDot} data-color="green" />
+              </div>
+              <div className={styles.codeTabs}>
+                <span className={styles.codeTabActive}>diego.ts</span>
+              </div>
+              <button
+                className={styles.copyButton}
+                onClick={handleCopy}
+                aria-label={copied ? "Código copiado" : "Copiar código"}
+              >
+                {copied ? <CheckIcon size={14} /> : <CopyIcon size={14} />}
+                <span className={styles.copyText}>{copied ? "Copiado" : "Copiar"}</span>
+              </button>
             </div>
-            <div className={styles.codeTabs}>
-              <span className={styles.codeTabActive}>about.ts</span>
+            <div className={styles.codeContent}>
+              <div className={styles.lineNumbers} aria-hidden="true">
+                {Array.from({ length: 26 }, (_, i) => (
+                  <span key={i + 1}>{i + 1}</span>
+                ))}
+              </div>
+              <pre className={styles.codeBlock}>
+                <code dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+              </pre>
             </div>
-            <button
-              className={styles.copyButton}
-              onClick={handleCopy}
-              aria-label={copied ? "Código copiado" : "Copiar código"}
-            >
-              {copied ? <CheckIcon size={16} /> : <CopyIcon size={16} />}
-              <span className={styles.copyText}>{copied ? "Copiado!" : "Copiar"}</span>
-            </button>
           </div>
-          <div className={styles.codeContent}>
-            <div className={styles.lineNumbers} aria-hidden="true">
-              {Array.from({ length: 24 }, (_, i) => (
-                <span key={i + 1}>{i + 1}</span>
-              ))}
-            </div>
-            <pre className={styles.codeBlock}>
-              <code dangerouslySetInnerHTML={{ __html: highlightedCode }} />
-            </pre>
+
+          <div className={styles.stats}>
+            {STATS.map((stat) => (
+              <div key={stat.label} className={styles.statItem}>
+                <span className={styles.statValue}>{stat.value}</span>
+                <span className={styles.statLabel}>{stat.label}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Conteúdo de Texto */}
+        {/* Bloco direito: texto + timeline */}
         <div className={styles.content}>
-          <span className={styles.badge}>Desenvolvedor</span>
-          
+          <span className={styles.badge}>{"// sobre mim"}</span>
+
           <h2 className={styles.title}>
-            Desenvolvendo soluções<br />
-            <span className={styles.titleAccent}>com propósito</span>
+            Engenharia primeiro,
+            <br />
+            <span className={styles.titleAccent}>código depois.</span>
           </h2>
 
           <div className={styles.description}>
             <p>
-              Meu nome é <span className={styles.highlight}>Diego Ortiz</span>, tenho 18 anos e estudo{" "}
-              <span className={styles.highlightAccent}>desenvolvimento de software</span>.
+              Sou <span className={styles.highlight}>Diego Ortiz</span>, 19 anos. Estudo{" "}
+              <span className={styles.highlightAccent}>
+                Análise e Desenvolvimento de Sistemas
+              </span>{" "}
+              com foco em Engenharia de Software e arquitetura backend.
             </p>
 
             <p>
-              Estou construindo minha base técnica por meio de projetos práticos, 
-              explorando diferentes tecnologias e áreas da programação, sempre com 
-              atenção à organização, clareza e boas práticas.
-            </p>
-
-            <p>
-              Ao longo desse processo, tive contato com linguagens, frameworks e 
-              ferramentas como{" "}
-              <span className={styles.tech}>JavaScript</span>,{" "}
-              <span className={styles.tech}>TypeScript</span>,{" "}
-              <span className={styles.tech}>React</span>,{" "}
-              <span className={styles.tech}>Next.js</span>,{" "}
-              <span className={styles.tech}>HTML</span>,{" "}
-              <span className={styles.tech}>CSS</span>,{" "}
-              <span className={styles.tech}>Tailwind</span>,{" "}
-              <span className={styles.tech}>Node.js</span>,{" "}
-              <span className={styles.tech}>Python</span> e{" "}
-              <span className={styles.tech}>MySQL</span>, utilizando esses recursos 
-              para compreender melhor tanto a parte lógica quanto a estrutural das aplicações.
+              Comecei a programar aos 17 anos por curiosidade e nunca mais parei.
+              Hoje trabalho como freelancer construindo{" "}
+              <span className={styles.tech}>APIs</span>,{" "}
+              <span className={styles.tech}>sistemas backend</span>,{" "}
+              <span className={styles.tech}>landing pages</span> e{" "}
+              <span className={styles.tech}>sites institucionais</span> pra clientes
+              que valorizam código bem feito e entrega no prazo.
             </p>
 
             <p className={styles.muted}>
-              Encaro tecnologia como um processo contínuo de aprendizado e responsabilidade. 
-              Mais do que seguir um único caminho ou rótulo, busco entender problemas, 
-              tomar decisões conscientes e evoluir a cada projeto, mantendo abertas as 
-              possibilidades dentro do desenvolvimento de software.
+              Acredito que software bom começa pelas decisões certas — não pelo framework
+              da moda. Minha praia é backend: design de APIs, modelagem de dados, lógica
+              de negócio. Mas quando o projeto pede, entrego o frontend completo também.
             </p>
+          </div>
+
+          <div className={styles.timeline}>
+            <h3 className={styles.timelineTitle}>
+              <span className={styles.timelineLine} />
+              Trajetória
+            </h3>
+            <ol className={styles.timelineList}>
+              {TIMELINE.map((item) => (
+                <li key={`${item.year}-${item.title}`} className={styles.timelineItem}>
+                  <span className={styles.timelineYear}>{item.year}</span>
+                  <div className={styles.timelineContent}>
+                    <h4 className={styles.timelineItemTitle}>{item.title}</h4>
+                    <p className={styles.timelineItemDesc}>{item.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </div>
