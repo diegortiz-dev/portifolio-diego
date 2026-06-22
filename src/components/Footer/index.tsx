@@ -5,28 +5,22 @@ import { SITE_CONFIG, NAV_LINKS, SOCIAL_LINKS } from "@/constants"
 import { GithubIcon, WhatsAppIcon, EmailIcon, ChevronDownIcon } from "@/components/Icons"
 import styles from "./Footer.module.css"
 
+const getSocialIcon = (iconName: string) => {
+  switch (iconName) {
+    case "github": return <GithubIcon size={18} />
+    case "whatsapp": return <WhatsAppIcon size={18} />
+    case "email": return <EmailIcon size={18} />
+    default: return null
+  }
+}
+
 export default function Footer() {
   const currentYear = new Date().getFullYear()
-
-  const getSocialIcon = (iconName: string) => {
-    switch (iconName) {
-      case "github":
-        return <GithubIcon size={18} />
-      case "whatsapp":
-        return <WhatsAppIcon size={18} />
-      case "email":
-        return <EmailIcon size={18} />
-      default:
-        return null
-    }
-  }
 
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        {/* Seção Superior */}
         <div className={styles.top}>
-          {/* Logo */}
           <div className={styles.brand}>
             <Link href="/" className={styles.logo}>
               <span className={styles.logoText}>
@@ -36,12 +30,26 @@ export default function Footer() {
               </span>
             </Link>
             <p className={styles.tagline}>
-              Desenvolvendo experiências digitais modernas e impactantes.
+              Desenvolvedor backend & full stack. Construindo sistemas digitais
+              com foco em arquitetura e código limpo.
             </p>
+            <div className={styles.socialIcons}>
+              {SOCIAL_LINKS.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialIcon}
+                  aria-label={link.name}
+                >
+                  {getSocialIcon(link.icon)}
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Navegação */}
-          <nav className={styles.nav} aria-label="Footer navigation">
+          <nav className={styles.nav} aria-label="Footer">
             <h3 className={styles.navTitle}>Navegação</h3>
             <ul className={styles.navList}>
               {NAV_LINKS.map((link) => (
@@ -54,47 +62,25 @@ export default function Footer() {
             </ul>
           </nav>
 
-          {/* Links Sociais */}
-          <div className={styles.social}>
-            <h3 className={styles.navTitle}>Social</h3>
-            <div className={styles.socialLinks}>
-              {SOCIAL_LINKS.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.socialLink}
-                  aria-label={link.name}
-                >
-                  {getSocialIcon(link.icon)}
-                  <span>{link.name}</span>
-                </a>
-              ))}
-            </div>
+          <div className={styles.contact}>
+            <h3 className={styles.navTitle}>Contato</h3>
+            <ul className={styles.contactList}>
+              <li>{SITE_CONFIG.email}</li>
+              <li>{SITE_CONFIG.whatsappRaw}</li>
+              <li>{SITE_CONFIG.location}</li>
+            </ul>
           </div>
         </div>
 
-        {/* Divisor */}
         <div className={styles.divider} />
 
-        {/* Seção Inferior */}
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            © {currentYear} {SITE_CONFIG.name}. Construído com{" "}
-            <a
-              href="https://nextjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.techLink}
-            >
-              Next.js
-            </a>
-            .
+            © {currentYear} {SITE_CONFIG.name}. Todos os direitos reservados.
           </p>
           <button
             className={styles.backToTop}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Voltar ao topo"
           >
             <ChevronDownIcon size={18} />

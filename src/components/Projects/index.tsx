@@ -4,8 +4,7 @@ import { useState, useMemo } from "react"
 import Image from "next/image"
 import { projects, projectCategories, ProjectCategory } from "@/data/projects"
 import { useIntersectionObserver } from "@/hooks"
-import { GithubIcon, ExternalLinkIcon, FolderIcon, ArrowRightIcon } from "@/components/Icons"
-import TiltCard from "@/components/TiltCard"
+import { GithubIcon, ExternalLinkIcon, FolderIcon } from "@/components/Icons"
 import styles from "./Projects.module.css"
 
 const categoryLabel = (cat: string) => {
@@ -19,197 +18,122 @@ const categoryLabel = (cat: string) => {
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all")
-  const [ref, isVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.1 })
+  const [ref, isVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.15 })
 
-  const featuredProjects = useMemo(
-    () => projects.filter((p) => p.featured),
-    []
-  )
-
-  const otherProjects = useMemo(() => {
-    const others = projects.filter((p) => !p.featured)
-    if (activeCategory === "all") return others
-    return others.filter((p) => p.category === activeCategory)
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === "all") return projects
+    return projects.filter((p) => p.category === activeCategory)
   }, [activeCategory])
 
   return (
     <section
       id="projects"
-      className={`${styles.projects} ${isVisible ? styles.visible : ""}`}
       ref={ref}
+      className={`${styles.projects} ${isVisible ? styles.visible : ""}`}
     >
       <div className={styles.container}>
         <header className={styles.header}>
-          <span className={styles.badge}>{"// projetos"}</span>
-          <h2 className={styles.title}>
-            Coisas que eu <span className={styles.titleAccent}>construí</span>.
+          <h2 className={styles.heading}>
+            Meus <span className={styles.gradientText}>Projetos</span>
           </h2>
+          <div className={styles.divider} />
           <p className={styles.subtitle}>
-            Uma seleção curada — código aberto, problemas reais, decisões intencionais.
+            Uma seleção do que já construí. Código aberto, decisões intencionais
+            e foco no que importa para o usuário final.
           </p>
         </header>
 
-        {/* Bento grid de destaques */}
-        <div className={styles.bentoGrid}>
-          {featuredProjects.slice(0, 2).map((project, idx) => (
-            <TiltCard
-              key={project.id}
-              intensity={6}
-              className={`${styles.bentoCard} ${idx === 0 ? styles.bentoLarge : ""}`}
-            >
-              <article className={styles.bentoInner}>
-                <div className={styles.bentoImageWrapper}>
-                  {project.image ? (
-                    <Image
-                      src={project.image}
-                      alt={`Screenshot do projeto ${project.title}`}
-                      fill
-                      className={styles.bentoImage}
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  ) : (
-                    <div className={styles.bentoImagePlaceholder}>
-                      <FolderIcon size={48} />
-                    </div>
-                  )}
-                  <div className={styles.bentoImageGradient} aria-hidden="true" />
-                </div>
-
-                <div className={styles.bentoContent}>
-                  <div className={styles.bentoMeta}>
-                    <span className={styles.bentoCategory}>{categoryLabel(project.category)}</span>
-                    {project.year && <span className={styles.bentoYear}>{project.year}</span>}
-                  </div>
-                  <h3 className={styles.bentoTitle}>{project.title}</h3>
-                  <p className={styles.bentoDescription}>{project.description}</p>
-
-                  {project.highlights && (
-                    <ul className={styles.highlights}>
-                      {project.highlights.map((h) => (
-                        <li key={h} className={styles.highlight}>
-                          <span className={styles.highlightDot} />
-                          {h}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  <div className={styles.bentoFooter}>
-                    <div className={styles.techList}>
-                      {project.techs.map((tech) => (
-                        <span key={tech} className={styles.techTag}>
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    <div className={styles.bentoLinks}>
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.bentoLink}
-                        aria-label={`Ver código do ${project.title} no GitHub`}
-                      >
-                        <GithubIcon size={18} />
-                      </a>
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.bentoLink}
-                          aria-label={`Ver demo do ${project.title}`}
-                        >
-                          <ExternalLinkIcon size={18} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </TiltCard>
-          ))}
-        </div>
-
-        {/* Filtros */}
-        <nav className={styles.filters} aria-label="Filtrar projetos por categoria">
-          {projectCategories.map((category) => (
+        <nav className={styles.filters} aria-label="Filtrar projetos">
+          {projectCategories.map((cat) => (
             <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
               className={`${styles.filterButton} ${
-                activeCategory === category.id ? styles.filterButtonActive : ""
+                activeCategory === cat.id ? styles.filterButtonActive : ""
               }`}
-              aria-pressed={activeCategory === category.id}
+              aria-pressed={activeCategory === cat.id}
             >
-              {category.label}
+              {cat.label}
             </button>
           ))}
         </nav>
 
-        {/* Grid normal */}
-        <div className={styles.projectsGrid}>
-          {otherProjects.map((project, index) => (
+        <div className={styles.grid}>
+          {filteredProjects.map((project, index) => (
             <article
               key={project.id}
-              className={styles.projectCard}
-              style={{ animationDelay: `${index * 0.08}s` }}
+              className={styles.card}
+              style={{ animationDelay: `${index * 80}ms` }}
             >
-              <header className={styles.cardHeader}>
-                <div className={styles.folderWrapper}>
-                  <FolderIcon size={22} className={styles.folderIcon} />
-                </div>
-                <div className={styles.cardLinks}>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.cardLink}
-                    aria-label={`Ver código do ${project.title} no GitHub`}
-                  >
-                    <GithubIcon size={18} />
-                  </a>
-                  {project.demo && (
+              <div className={styles.imageWrapper}>
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={`Screenshot do ${project.title}`}
+                    fill
+                    className={styles.image}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : (
+                  <div className={styles.imagePlaceholder}>
+                    <FolderIcon size={36} />
+                  </div>
+                )}
+                <div className={styles.overlay}>
+                  <div className={styles.overlayActions}>
                     <a
-                      href={project.demo}
+                      href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={styles.cardLink}
-                      aria-label={`Ver demo do ${project.title}`}
+                      className={styles.overlayButton}
+                      aria-label={`Ver código do ${project.title} no GitHub`}
                     >
-                      <ExternalLinkIcon size={18} />
+                      <GithubIcon size={20} />
                     </a>
-                  )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.overlayButton}
+                        aria-label={`Ver demo do ${project.title}`}
+                      >
+                        <ExternalLinkIcon size={20} />
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </header>
-
-              <div className={styles.cardBody}>
-                <span className={styles.cardCategory}>{categoryLabel(project.category)}</span>
-                <h3 className={styles.cardTitle}>{project.title}</h3>
-                <p className={styles.cardDescription}>{project.description}</p>
               </div>
 
-              <footer className={styles.cardFooter}>
-                {project.techs.map((tech) => (
-                  <span key={tech} className={styles.cardTech}>
-                    {tech}
-                  </span>
-                ))}
-              </footer>
+              <div className={styles.content}>
+                <span className={styles.category}>{categoryLabel(project.category)}</span>
+                <h3 className={styles.cardTitle}>{project.title}</h3>
+                <p className={styles.cardDescription}>{project.description}</p>
+                <div className={styles.techList}>
+                  {project.techs.map((tech) => (
+                    <span key={tech} className={styles.techBadge}>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </article>
           ))}
         </div>
 
         <div className={styles.cta}>
-          <a
-            href="https://github.com/diegortiz-dev"
-            target="_blank"
-            rel="noopener noreferrer"
+          <p className={styles.ctaText}>
+            Se algo aqui chamou sua atenção, vamos conversar sobre o seu projeto.
+          </p>
+          <button
+            onClick={() => {
+              const el = document.getElementById("contact")
+              if (el) el.scrollIntoView({ behavior: "smooth" })
+            }}
             className={styles.ctaButton}
           >
-            <span>Ver tudo no GitHub</span>
-            <ArrowRightIcon size={16} />
-          </a>
+            Iniciar um projeto
+          </button>
         </div>
       </div>
     </section>

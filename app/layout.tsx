@@ -2,25 +2,12 @@ import "./globals.css"
 import type { Metadata, Viewport } from "next"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google"
+import { Inter } from "next/font/google"
 import { SITE_CONFIG } from "@/constants"
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-})
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
   display: "swap",
 })
 
@@ -74,7 +61,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#08080C",
+  themeColor: "#0A0E1A",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -86,12 +73,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
-      suppressHydrationWarning
-    >
-      <body className="font-sans antialiased">
+    <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
+      <body className="antialiased">
         <Header />
         {children}
         <Footer />
