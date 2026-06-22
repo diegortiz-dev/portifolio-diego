@@ -119,15 +119,22 @@ export default function Contact() {
       <div className={styles.container}>
         {/* Lado Esquerdo - Informações */}
         <div className={styles.info}>
-          <span className={styles.badge}>Contato</span>
+          <span className={styles.badge}>{"// contato"}</span>
           <h2 className={styles.title}>
-            Vamos trabalhar <br />
-            <span className={styles.titleAccent}>juntos?</span>
+            Bora construir
+            <br />
+            <span className={styles.titleAccent}>algo juntos?</span>
           </h2>
           <p className={styles.description}>
-            Estou sempre aberto a novas oportunidades, projetos interessantes e
-            colaborações. Sinta-se à vontade para entrar em contato!
+            Tenho disponibilidade pra freelances de backend, APIs, landing pages
+            e sites institucionais. Respondo geralmente em até 24 horas — bota a
+            ideia aí que eu olho com calma.
           </p>
+
+          <div className={styles.availability}>
+            <span className={styles.availDot} />
+            <span>Aceitando novos projetos</span>
+          </div>
 
           <div className={styles.contactInfo}>
             <a href={`mailto:${SITE_CONFIG.email}`} className={styles.emailLink}>

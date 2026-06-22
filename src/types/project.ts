@@ -3,10 +3,12 @@ export interface Project {
   title: string
   description: string
   longDescription?: string
+  highlights?: string[]
   techs: string[]
   category: "frontend" | "backend" | "fullstack"
   github: string
   demo?: string
   image?: string
   featured?: boolean
+  year?: string
 }
