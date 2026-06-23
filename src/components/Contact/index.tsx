@@ -3,13 +3,23 @@
 import { useState, FormEvent } from "react"
 import { useIntersectionObserver } from "@/hooks"
 import { SOCIAL_LINKS, SITE_CONFIG } from "@/constants"
-import { GithubIcon, WhatsAppIcon, EmailIcon, SendIcon } from "@/components/Icons"
+import {
+  GithubIcon,
+  WhatsAppIcon,
+  EmailIcon,
+  SendIcon,
+  MapPinIcon,
+  ClockIcon,
+} from "@/components/Icons"
+import { buildContactMessage, buildWhatsAppUrl, quickWhatsAppUrl } from "@/lib/whatsapp"
 import styles from "./Contact.module.css"
 
 interface FormData {
   name: string
   email: string
-  subject: string
+  projectType: string
+  timeline: string
+  budget: string
   message: string
 }
 
@@ -22,9 +32,27 @@ interface FormErrors {
 const initialFormData: FormData = {
   name: "",
   email: "",
-  subject: "",
+  projectType: "",
+  timeline: "",
+  budget: "",
   message: "",
 }
+
+const projectTypes = [
+  "Backend / API",
+  "Landing page",
+  "Site institucional",
+  "Sistema web full stack",
+  "Outro",
+]
+
+const budgetRanges = [
+  "Até R$ 1.000",
+  "R$ 1.000 - R$ 3.000",
+  "R$ 3.000 - R$ 7.000",
+  "Acima de R$ 7.000",
+  "Vamos conversar",
+]
 
 export default function Contact() {
   const [formData, setFormData] = useState<FormData>(initialFormData)
@@ -49,7 +77,7 @@ export default function Contact() {
     if (!formData.message.trim()) {
       newErrors.message = "Mensagem é obrigatória"
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Mensagem deve ter pelo menos 10 caracteres"
+      newErrors.message = "Conte um pouco mais (mínimo 10 caracteres)"
     }
 
     setErrors(newErrors)
@@ -57,12 +85,11 @@ export default function Contact() {
   }
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
-    
-    // Limpa erro quando usuário começa a digitar
+
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }))
     }
@@ -77,17 +104,17 @@ export default function Contact() {
     setSubmitStatus("idle")
 
     try {
-      // Monta a mensagem para WhatsApp
-      const message = `*Nova mensagem do Portfolio*%0A%0A` +
-        `*Nome:* ${formData.name}%0A` +
-        `*Email:* ${formData.email}%0A` +
-        `${formData.subject ? `*Assunto:* ${formData.subject}%0A` : ""}` +
-        `*Mensagem:* ${formData.message}`
-      
-      // Abre WhatsApp com a mensagem
-      const whatsappUrl = `https://wa.me/5535910188806?text=${encodeURIComponent(message.replace(/%0A/g, "\n"))}`
-      window.open(whatsappUrl, "_blank")
-      
+      const message = buildContactMessage({
+        name: formData.name,
+        email: formData.email,
+        projectType: formData.projectType,
+        description: formData.message,
+        timeline: formData.timeline,
+        budget: formData.budget,
+      })
+
+      window.open(buildWhatsAppUrl(message), "_blank")
+
       setSubmitStatus("success")
       setFormData(initialFormData)
     } catch {
@@ -124,16 +151,61 @@ export default function Contact() {
             Vamos trabalhar <br />
             <span className={styles.titleAccent}>juntos?</span>
           </h2>
+          <div className={styles.divider} />
           <p className={styles.description}>
-            Estou sempre aberto a novas oportunidades, projetos interessantes e
-            colaborações. Sinta-se à vontade para entrar em contato!
+            Conta o que você precisa, eu retorno com escopo e orçamento.
+            Sem rodeios, sem proposta padronizada — cada projeto recebe
+            atenção real.
           </p>
 
-          <div className={styles.contactInfo}>
-            <a href={`mailto:${SITE_CONFIG.email}`} className={styles.emailLink}>
-              <EmailIcon size={20} />
-              <span>{SITE_CONFIG.email}</span>
+          <div className={styles.infoCards}>
+            <a
+              href={`mailto:${SITE_CONFIG.email}`}
+              className={styles.infoCard}
+            >
+              <div className={styles.infoIcon}>
+                <EmailIcon size={18} />
+              </div>
+              <div className={styles.infoText}>
+                <span className={styles.infoLabel}>Email</span>
+                <span className={styles.infoValue}>{SITE_CONFIG.email}</span>
+              </div>
             </a>
+
+            <a
+              href={quickWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.infoCard}
+            >
+              <div className={styles.infoIcon}>
+                <WhatsAppIcon size={18} />
+              </div>
+              <div className={styles.infoText}>
+                <span className={styles.infoLabel}>WhatsApp</span>
+                <span className={styles.infoValue}>{SITE_CONFIG.whatsappRaw}</span>
+              </div>
+            </a>
+
+            <div className={styles.infoCard}>
+              <div className={styles.infoIcon}>
+                <MapPinIcon size={18} />
+              </div>
+              <div className={styles.infoText}>
+                <span className={styles.infoLabel}>Localização</span>
+                <span className={styles.infoValue}>{SITE_CONFIG.location}</span>
+              </div>
+            </div>
+
+            <div className={styles.infoCard}>
+              <div className={styles.infoIcon}>
+                <ClockIcon size={18} />
+              </div>
+              <div className={styles.infoText}>
+                <span className={styles.infoLabel}>Tempo de resposta</span>
+                <span className={styles.infoValue}>{SITE_CONFIG.responseTime}</span>
+              </div>
+            </div>
           </div>
 
           <div className={styles.socialLinks}>
@@ -190,25 +262,69 @@ export default function Contact() {
             </div>
           </div>
 
+          <div className={styles.formRow}>
+            <div className={styles.formGroup}>
+              <label htmlFor="projectType" className={styles.label}>
+                Tipo de projeto
+              </label>
+              <select
+                id="projectType"
+                name="projectType"
+                value={formData.projectType}
+                onChange={handleChange}
+                className={styles.input}
+                disabled={isSubmitting}
+              >
+                <option value="">Selecione</option>
+                {projectTypes.map((p) => (
+                  <option key={p} value={p}>
+                    {p}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="budget" className={styles.label}>
+                Orçamento estimado
+              </label>
+              <select
+                id="budget"
+                name="budget"
+                value={formData.budget}
+                onChange={handleChange}
+                className={styles.input}
+                disabled={isSubmitting}
+              >
+                <option value="">Selecione</option>
+                {budgetRanges.map((b) => (
+                  <option key={b} value={b}>
+                    {b}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
           <div className={styles.formGroup}>
-            <label htmlFor="subject" className={styles.label}>
-              Assunto
+            <label htmlFor="timeline" className={styles.label}>
+              Prazo desejado
             </label>
             <input
               type="text"
-              id="subject"
-              name="subject"
-              value={formData.subject}
+              id="timeline"
+              name="timeline"
+              value={formData.timeline}
               onChange={handleChange}
               className={styles.input}
-              placeholder="Sobre o que você quer falar?"
+              placeholder="Ex: 2 semanas, 1 mês, sem pressa"
               disabled={isSubmitting}
             />
           </div>
 
           <div className={styles.formGroup}>
             <label htmlFor="message" className={styles.label}>
-              Mensagem <span className={styles.required}>*</span>
+              Sobre o projeto <span className={styles.required}>*</span>
             </label>
             <textarea
               id="message"
@@ -216,7 +332,7 @@ export default function Contact() {
               value={formData.message}
               onChange={handleChange}
               className={`${styles.textarea} ${errors.message ? styles.inputError : ""}`}
-              placeholder="Sua mensagem..."
+              placeholder="Descreva brevemente o que você precisa, objetivo, referências..."
               rows={5}
               disabled={isSubmitting}
             />
@@ -233,25 +349,29 @@ export default function Contact() {
             {isSubmitting ? (
               <>
                 <span className={styles.spinner} />
-                Enviando...
+                Abrindo WhatsApp...
               </>
             ) : (
               <>
-                Enviar mensagem
+                Enviar pelo WhatsApp
                 <SendIcon size={18} />
               </>
             )}
           </button>
 
+          <p className={styles.submitNote}>
+            O formulário gera uma mensagem estruturada e abre o WhatsApp pra você finalizar o envio.
+          </p>
+
           {submitStatus === "success" && (
             <p className={styles.successMessage}>
-              ✓ Mensagem enviada com sucesso! Entrarei em contato em breve.
+              ✓ Mensagem pronta no WhatsApp! É só apertar enviar.
             </p>
           )}
 
           {submitStatus === "error" && (
             <p className={styles.errorMessage}>
-              ✗ Ocorreu um erro ao enviar a mensagem. Tente novamente.
+              ✗ Ocorreu um erro ao abrir o WhatsApp. Tente novamente.
             </p>
           )}
         </form>

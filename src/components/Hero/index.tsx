@@ -98,6 +98,15 @@ export default function Hero() {
       <div className={styles.container}>
         {/* Conteúdo principal */}
         <div className={styles.content}>
+          <a
+            href="#contact"
+            className={styles.statusPill}
+            onClick={(e) => handleScrollTo(e, 'contact')}
+          >
+            <span className={styles.statusDot} aria-hidden="true" />
+            <span>Disponível para freelances</span>
+          </a>
+
           <p className={styles.greeting}>Olá, meu nome é Diego</p>
 
           <h1 className={styles.title}>
@@ -106,7 +115,7 @@ export default function Hero() {
           </h1>
 
           <div className={styles.typewriter}>
-            <span className={styles.typewriterLabel}>Meu objetivo é construir</span>
+            <span className={styles.typewriterLabel}>Construo</span>
             <span className={styles.typewriterText}>
               {displayText}
               <span className={styles.cursor} aria-hidden="true">|</span>
@@ -114,19 +123,19 @@ export default function Hero() {
           </div>
 
           <div className={styles.ctaGroup}>
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               className={styles.ctaButton}
               onClick={(e) => handleScrollTo(e, 'contact')}
             >
               Entrar em Contato
             </a>
-            <a 
-              href="#projects" 
+            <a
+              href="#services"
               className={styles.ctaSecondary}
-              onClick={(e) => handleScrollTo(e, 'projects')}
+              onClick={(e) => handleScrollTo(e, 'services')}
             >
-              Ver Projetos
+              Ver Serviços
             </a>
           </div>
         </div>
