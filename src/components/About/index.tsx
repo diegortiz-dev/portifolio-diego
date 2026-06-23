@@ -60,7 +60,6 @@ const codeContent = `export const diego = {
   ]
 }`
 
-// Highlighted code for display
 const highlightedCode = `<span class="keyword">export const</span> <span class="variable">diego</span> <span class="operator">=</span> {
   <span class="property">name</span>: <span class="string">"Diego Ortiz"</span>,
   <span class="property">age</span>: <span class="number">18</span>,
