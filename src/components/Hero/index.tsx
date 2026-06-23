@@ -47,16 +47,14 @@ export default function Hero() {
         <div className={styles.content}>
           <a
             href="#contact"
-            onClick={(e) => handleScrollTo(e, "contact")}
             className={styles.statusPill}
+            onClick={(e) => handleScrollTo(e, 'contact')}
           >
             <span className={styles.statusDot} aria-hidden="true" />
             <span>Disponível para freelances</span>
           </a>
 
-          <p className={styles.greeting}>
-            <span className={styles.greetingArrow}>$</span> echo &quot;Olá, eu sou&quot;
-          </p>
+          <p className={styles.greeting}>Olá, meu nome é Diego</p>
 
           <h1 className={styles.title}>
             <span className={styles.titleName}>Diego Ortiz</span>
@@ -72,7 +70,7 @@ export default function Hero() {
           </p>
 
           <div className={styles.typewriter}>
-            <span className={styles.typewriterLabel}>Construo:</span>
+            <span className={styles.typewriterLabel}>Construo</span>
             <span className={styles.typewriterText}>
               {displayText}
               <span className={styles.cursor} aria-hidden="true" />
@@ -81,21 +79,19 @@ export default function Hero() {
 
           <div className={styles.ctaGroup}>
             <a
-              href="#projects"
-              className={styles.ctaPrimary}
-              onClick={(e) => handleScrollTo(e, "projects")}
+              href="#contact"
+              className={styles.ctaButton}
+              onClick={(e) => handleScrollTo(e, 'contact')}
             >
               <span>Ver projetos</span>
               <ArrowRightIcon size={16} />
             </a>
             <a
-              href={SITE_CONFIG.github}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#services"
               className={styles.ctaSecondary}
+              onClick={(e) => handleScrollTo(e, 'services')}
             >
-              <GithubIcon size={18} />
-              <span>GitHub</span>
+              Ver Serviços
             </a>
           </div>
         </div>

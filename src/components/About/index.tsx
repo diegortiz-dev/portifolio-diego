@@ -2,9 +2,43 @@
 
 import { useState } from "react"
 import { useIntersectionObserver } from "@/hooks"
+<<<<<<< HEAD
 import { CopyIcon, CheckIcon } from "@/components/Icons"
 import { STATS, TIMELINE } from "@/constants"
+=======
+import {
+  CopyIcon,
+  CheckIcon,
+  ServerIcon,
+  ApiIcon,
+  LayoutIcon,
+  ZapIcon,
+} from "@/components/Icons"
+>>>>>>> 8366a192548621938f066f19de11ac544cb2244b
 import styles from "./About.module.css"
+
+const aboutSkills = [
+  {
+    icon: ServerIcon,
+    title: "Backend",
+    description: "Node.js, Python e MySQL pra construir a lógica e os dados.",
+  },
+  {
+    icon: ApiIcon,
+    title: "APIs",
+    description: "Design de APIs RESTful claras, autenticadas e bem documentadas.",
+  },
+  {
+    icon: LayoutIcon,
+    title: "Frontend",
+    description: "React, Next.js e Tailwind pra interfaces rápidas e responsivas.",
+  },
+  {
+    icon: ZapIcon,
+    title: "Performance",
+    description: "Foco em SEO técnico, Core Web Vitals e acessibilidade.",
+  },
+]
 
 const codeContent = `export const diego = {
   name: "Diego Ortiz",
@@ -130,6 +164,8 @@ export default function About() {
             <span className={styles.titleAccent}>código depois.</span>
           </h2>
 
+          <div className={styles.titleDivider} />
+
           <div className={styles.description}>
             <p>
               Sou <span className={styles.highlight}>Diego Ortiz</span>, 19 anos. Estudo{" "}
@@ -150,9 +186,16 @@ export default function About() {
             </p>
 
             <p className={styles.muted}>
+<<<<<<< HEAD
               Acredito que software bom começa pelas decisões certas — não pelo framework
               da moda. Minha praia é backend: design de APIs, modelagem de dados, lógica
               de negócio. Mas quando o projeto pede, entrego o frontend completo também.
+=======
+              Encaro tecnologia como um processo contínuo de aprendizado e responsabilidade.
+              Mais do que seguir um único caminho ou rótulo, busco entender problemas,
+              tomar decisões conscientes e evoluir a cada projeto, mantendo abertas as
+              possibilidades dentro do desenvolvimento de software.
+>>>>>>> 8366a192548621938f066f19de11ac544cb2244b
             </p>
           </div>
 
@@ -173,6 +216,23 @@ export default function About() {
               ))}
             </ol>
           </div>
+        </div>
+
+        {/* Skill mini-cards */}
+        <div className={styles.skillGrid}>
+          {aboutSkills.map((skill, idx) => (
+            <div
+              key={skill.title}
+              className={styles.skillCard}
+              style={{ animationDelay: `${idx * 80}ms` }}
+            >
+              <div className={styles.skillIcon}>
+                <skill.icon size={20} />
+              </div>
+              <h3 className={styles.skillTitle}>{skill.title}</h3>
+              <p className={styles.skillDescription}>{skill.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

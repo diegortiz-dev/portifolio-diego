@@ -27,28 +27,29 @@
   animation: fadeIn 0.8s ease-out;
 }
 
-/* Status pill animada */
+/* Status pill */
 .statusPill {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.875rem;
+  margin-bottom: 1.25rem;
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--color-text-primary);
-  background: rgba(13, 13, 20, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(24, 24, 27, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-full);
   text-decoration: none;
   transition: var(--transition-base);
-  animation: fadeInUp 0.5s ease-out;
+  animation: fadeInUp 0.6s ease-out;
 }
 
 .statusPill:hover {
   border-color: var(--color-accent-primary);
-  background: rgba(167, 139, 250, 0.08);
+  background: var(--color-accent-subtle);
   transform: translateY(-1px);
 }
 
@@ -57,28 +58,25 @@
   height: 0.5rem;
   border-radius: 50%;
   background: #4ADE80;
-  position: relative;
-  animation: pulseGlow 2s ease-in-out infinite;
-  box-shadow: 0 0 12px rgba(74, 222, 128, 0.6);
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+  animation: statusPulse 2s ease-in-out infinite;
 }
 
-@keyframes pulseGlow {
+@keyframes statusPulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6), 0 0 12px rgba(74, 222, 128, 0.6);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5), 0 0 10px rgba(74, 222, 128, 0.6);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(74, 222, 128, 0), 0 0 20px rgba(74, 222, 128, 0.8);
+    box-shadow: 0 0 0 7px rgba(74, 222, 128, 0), 0 0 16px rgba(74, 222, 128, 0.8);
   }
 }
 
-/* Greeting com estilo de terminal */
+/* Saudação */
 .greeting {
-  font-family: var(--font-mono);
-  font-size: 0.9375rem;
-  color: var(--color-text-tertiary);
-  margin: 0;
-  animation: fadeInUp 0.6s ease-out 0.1s backwards;
-  letter-spacing: 0.01em;
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.6s ease-out 0.05s backwards;
 }
 
 .greetingArrow {

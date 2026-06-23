@@ -40,10 +40,11 @@ export default function Projects() {
     >
       <div className={styles.container}>
         <header className={styles.header}>
-          <span className={styles.badge}>{"// projetos"}</span>
+          <span className={styles.badge}>Portfólio</span>
           <h2 className={styles.title}>
-            Coisas que eu <span className={styles.titleAccent}>construí</span>.
+            Projetos em <span className={styles.titleAccent}>Destaque</span>
           </h2>
+          <div className={styles.divider} />
           <p className={styles.subtitle}>
             Uma seleção curada — código aberto, problemas reais, decisões intencionais.
           </p>
@@ -183,11 +184,16 @@ export default function Projects() {
                 </div>
               </header>
 
-              <div className={styles.cardBody}>
-                <span className={styles.cardCategory}>{categoryLabel(project.category)}</span>
-                <h3 className={styles.cardTitle}>{project.title}</h3>
-                <p className={styles.cardDescription}>{project.description}</p>
-              </div>
+              <span className={`${styles.cardCategory} ${styles[`cat_${project.category}`] ?? ""}`}>
+                {project.category === "frontend"
+                  ? "Frontend"
+                  : project.category === "backend"
+                  ? "Backend"
+                  : "Full Stack"}
+              </span>
+
+              <h3 className={styles.cardTitle}>{project.title}</h3>
+              <p className={styles.cardDescription}>{project.description}</p>
 
               <footer className={styles.cardFooter}>
                 {project.techs.map((tech) => (
