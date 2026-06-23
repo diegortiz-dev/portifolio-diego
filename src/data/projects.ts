@@ -33,6 +33,7 @@ export const projects: Project[] = [
     techs: ["React", "Next.js", "JavaScript", "Tailwind CSS"],
     category: "fullstack",
     github: "https://github.com/rodrigo749/desabandonefocinhos",
+    demo: "https://desabandonefocinhos.vercel.app/",
     image: "/projects/desabandone-focinhos.png",
     imagePosition: "top center",
     featured: true,
