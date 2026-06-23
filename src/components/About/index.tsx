@@ -37,7 +37,7 @@ const aboutSkills = [
 
 const codeContent = `export const diego = {
   name: "Diego Ortiz",
-  age: 18,
+  age: 19,
   role: "Desenvolvedor Full Stack",
 
   contact: {
@@ -47,9 +47,9 @@ const codeContent = `export const diego = {
 
   skills: {
     frontend: ["React", "Next.js", "TypeScript", "JavaScript", 
-      "HTML5", "CSS3", "Tailwind CSS"],
-    backend: ["Node.js", "Python", "MySQL"],
-    tools: ["Git", "GitHub"]
+      "HTML5", "CSS3", "Tailwind CSS"]
+    backend: ["Node.js", "Python", "MySQL", "PostgreSQL"],
+    tools: ["Git", "GitHub", Figma", "VS Code", "Postman"]
   },
 
   goals: [
@@ -62,8 +62,8 @@ const codeContent = `export const diego = {
 
 const highlightedCode = `<span class="keyword">export const</span> <span class="variable">diego</span> <span class="operator">=</span> {
   <span class="property">name</span>: <span class="string">"Diego Ortiz"</span>,
-  <span class="property">age</span>: <span class="number">18</span>,
-  <span class="property">role</span>: <span class="string">"Desenvolvedor Full Stack"</span>,
+  <span class="property">age</span>: <span class="number">19</span>,
+  <span class="property">role</span>: <span class="string">"Desenvolvedor"</span>,
 
   <span class="property">contact</span>: {
     <span class="property">email</span>: <span class="string">"ortizdtz@gmail.com"</span>,
@@ -71,11 +71,10 @@ const highlightedCode = `<span class="keyword">export const</span> <span class="
   },
 
   <span class="property">skills</span>: {
-    <span class="property">frontend</span>: [<span class="string">"React"</span>, <span class="string">"Next.js"</span>,
-      <span class="string">"TypeScript"</span>, <span class="string">"JavaScript"</span>, <span class="string">"HTML5"</span>,
-      <span class="string">"CSS3"</span>, <span class="string">"Tailwind CSS"</span>],
-    <span class="property">backend</span>: [<span class="string">"Node.js"</span>, <span class="string">"Python"</span>, <span class="string">"MySQL"</span>],
-    <span class="property">tools</span>: [<span class="string">"Git"</span>, <span class="string">"GitHub"</span>]
+    <span class="property">frontend</span>: [<span class="string">"React"</span>, <span class="string">"Next.js"</span>,<span class="string">"Vue.js"</span>, <span class="string">"JavaScript"</span>, <span class="string">"HTML5"</span>,
+      <span class="string">"TypeScript"</span>, <span class="string">"JavaScript"</span>, <span class="string">"CSS3"</span>, <span class="string">"Tailwind CSS"</span>],
+    <span class="property">backend</span>: [<span class="string">"Node.js"</span>, <span class="string">"Python"</span>, <span class="string">"MySQL"</span>, <span class="string">"PostgreSQL"</span>],
+    <span class="property">tools</span>: [<span class="string">"Git"</span>, <span class="string">"GitHub"</span>, <span class="string">"Figma"</span>, <span class="string">"Docker"</span>, <span class="string">"Postman"</span>]
   },
 
   <span class="property">goals</span>: [
@@ -152,7 +151,7 @@ export default function About() {
 
           <div className={styles.description}>
             <p>
-              Meu nome é <span className={styles.highlight}>Diego Ortiz</span>, tenho 18 anos e estudo{" "}
+              Meu nome é <span className={styles.highlight}>Diego Ortiz</span>, tenho 19 anos e estudo{" "}
               <span className={styles.highlightAccent}>desenvolvimento de software</span>.
             </p>
 
@@ -173,10 +172,13 @@ export default function About() {
               <span className={styles.tech}>CSS</span>,{" "}
               <span className={styles.tech}>Tailwind</span>,{" "}
               <span className={styles.tech}>Node.js</span>,{" "}
-              <span className={styles.tech}>Python</span> e{" "}
+              <span className={styles.tech}>Python</span>,{" "}
+              <span className={styles.tech}>Docker</span>,{" "}
+              <span className={styles.tech}>PostgreSQL</span> e{" "}
               <span className={styles.tech}>MySQL</span>, utilizando esses recursos 
               para compreender melhor tanto a parte lógica quanto a estrutural das aplicações.
             </p>
+
 
             <p className={styles.muted}>
               Encaro tecnologia como um processo contínuo de aprendizado e responsabilidade.
