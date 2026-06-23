@@ -6,14 +6,18 @@ export const SITE_CONFIG = {
   email: "ortizdtz@gmail.com",
   github: "https://github.com/diegortiz-dev",
   whatsapp: "https://wa.me/5535910188806",
+  whatsappRaw: "(35) 91018-8806",
+  location: "Minas Gerais, Brasil",
+  responseTime: "Resposta em até 24h",
   title: "Diego Ortiz | Desenvolvedor",
   description:
-    "Diego Ortiz - Desenvolvedor especializado em criar experiências digitais modernas e impactantes.",
+    "Diego Ortiz - Desenvolvedor freelancer especializado em backend, APIs, landing pages e sites institucionais. Código limpo e entrega no prazo.",
 } as const
 
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "#about", label: "Sobre" },
+  { href: "#services", label: "Serviços" },
   { href: "#projects", label: "Projetos" },
   { href: "#contact", label: "Contato" },
 ] as const
@@ -52,9 +56,10 @@ export const TECH_STACK = [
 ] as const
 
 export const HERO_ROLES = [
-  "Interfaces modernas.",
-  "Experiências únicas.",
-  "Resultados impactantes.",
+  "APIs robustas.",
+  "Landing pages que convertem.",
+  "Sites institucionais.",
+  "Sistemas escaláveis.",
   "Código limpo.",
 ] as const
 

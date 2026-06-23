@@ -20,7 +20,7 @@ export default function Header() {
   // Track active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['contact', 'projects', 'about']
+      const sections = ['contact', 'projects', 'services', 'about']
       const scrollPosition = window.scrollY + 200
 
       for (const sectionId of sections) {
@@ -207,17 +207,17 @@ export default function Header() {
 
     {/* Navegação Mobile Bottom Bar - Fora do header para evitar problemas de posicionamento no iOS */}
     <nav className={styles.mobileBottomNav} aria-label="Navegação mobile">
-      <a
+      <Link
         href="/"
         className={`${styles.mobileBottomLink} ${activeSection === '/' ? styles.active : ''}`}
-        onClick={(e) => handleNavClick(e, '/')}
+        onClick={(e) => handleNavClick(e as unknown as React.MouseEvent<HTMLAnchorElement>, '/')}
         aria-label="Home"
       >
         <span className={styles.iconWrapper}>
           <HomeIcon size={22} />
         </span>
         <span className={styles.linkLabel}>Home</span>
-      </a>
+      </Link>
       <a
         href="#about"
         className={`${styles.mobileBottomLink} ${activeSection === '#about' ? styles.active : ''}`}

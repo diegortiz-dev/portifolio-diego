@@ -2,8 +2,38 @@
 
 import { useState } from "react"
 import { useIntersectionObserver } from "@/hooks"
-import { CopyIcon, CheckIcon } from "@/components/Icons"
+import {
+  CopyIcon,
+  CheckIcon,
+  ServerIcon,
+  ApiIcon,
+  LayoutIcon,
+  ZapIcon,
+} from "@/components/Icons"
 import styles from "./About.module.css"
+
+const aboutSkills = [
+  {
+    icon: ServerIcon,
+    title: "Backend",
+    description: "Node.js, Python e MySQL pra construir a lógica e os dados.",
+  },
+  {
+    icon: ApiIcon,
+    title: "APIs",
+    description: "Design de APIs RESTful claras, autenticadas e bem documentadas.",
+  },
+  {
+    icon: LayoutIcon,
+    title: "Frontend",
+    description: "React, Next.js e Tailwind pra interfaces rápidas e responsivas.",
+  },
+  {
+    icon: ZapIcon,
+    title: "Performance",
+    description: "Foco em SEO técnico, Core Web Vitals e acessibilidade.",
+  },
+]
 
 const codeContent = `export const diego = {
   name: "Diego Ortiz",
@@ -119,6 +149,8 @@ export default function About() {
             <span className={styles.titleAccent}>com propósito</span>
           </h2>
 
+          <div className={styles.titleDivider} />
+
           <div className={styles.description}>
             <p>
               Meu nome é <span className={styles.highlight}>Diego Ortiz</span>, tenho 18 anos e estudo{" "}
@@ -148,12 +180,29 @@ export default function About() {
             </p>
 
             <p className={styles.muted}>
-              Encaro tecnologia como um processo contínuo de aprendizado e responsabilidade. 
-              Mais do que seguir um único caminho ou rótulo, busco entender problemas, 
-              tomar decisões conscientes e evoluir a cada projeto, mantendo abertas as 
+              Encaro tecnologia como um processo contínuo de aprendizado e responsabilidade.
+              Mais do que seguir um único caminho ou rótulo, busco entender problemas,
+              tomar decisões conscientes e evoluir a cada projeto, mantendo abertas as
               possibilidades dentro do desenvolvimento de software.
             </p>
           </div>
+        </div>
+
+        {/* Skill mini-cards */}
+        <div className={styles.skillGrid}>
+          {aboutSkills.map((skill, idx) => (
+            <div
+              key={skill.title}
+              className={styles.skillCard}
+              style={{ animationDelay: `${idx * 80}ms` }}
+            >
+              <div className={styles.skillIcon}>
+                <skill.icon size={20} />
+              </div>
+              <h3 className={styles.skillTitle}>{skill.title}</h3>
+              <p className={styles.skillDescription}>{skill.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -30,7 +30,10 @@ export default function Projects() {
         {/* Cabeçalho da Seção */}
         <header className={styles.header}>
           <span className={styles.badge}>Portfólio</span>
-          <h2 className={styles.title}>Projetos em Destaque</h2>
+          <h2 className={styles.title}>
+            Projetos em <span className={styles.titleAccent}>Destaque</span>
+          </h2>
+          <div className={styles.divider} />
           <p className={styles.subtitle}>
             Uma seleção de projetos que demonstram minhas habilidades e
             experiência em desenvolvimento web.
@@ -152,6 +155,14 @@ export default function Projects() {
                   )}
                 </div>
               </header>
+
+              <span className={`${styles.cardCategory} ${styles[`cat_${project.category}`] ?? ""}`}>
+                {project.category === "frontend"
+                  ? "Frontend"
+                  : project.category === "backend"
+                  ? "Backend"
+                  : "Full Stack"}
+              </span>
 
               <h3 className={styles.cardTitle}>{project.title}</h3>
               <p className={styles.cardDescription}>{project.description}</p>

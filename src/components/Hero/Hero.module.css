@@ -88,12 +88,56 @@
   text-align: center;
 }
 
+/* Status pill */
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.875rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  background: rgba(24, 24, 27, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: var(--transition-base);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.statusPill:hover {
+  border-color: var(--color-accent-primary);
+  background: var(--color-accent-subtle);
+  transform: translateY(-1px);
+}
+
+.statusDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #4ADE80;
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5), 0 0 10px rgba(74, 222, 128, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(74, 222, 128, 0), 0 0 16px rgba(74, 222, 128, 0.8);
+  }
+}
+
 /* Saudação */
 .greeting {
   font-size: 1.125rem;
   color: var(--color-text-secondary);
   margin-bottom: 1rem;
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp 0.6s ease-out 0.05s backwards;
 }
 
 /* Título */

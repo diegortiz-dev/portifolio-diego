@@ -52,6 +52,18 @@
   margin: 0 0 1rem;
 }
 
+.titleAccent {
+  color: var(--color-accent-primary);
+}
+
+.divider {
+  width: 5rem;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+  border-radius: var(--radius-full);
+  margin: 0 auto 1.5rem;
+}
+
 .subtitle {
   font-size: 1rem;
   color: var(--color-text-secondary);
@@ -303,6 +315,34 @@
 
 .cardLink:hover {
   color: var(--color-accent-primary);
+}
+
+.cardCategory {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 0.625rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-primary);
+  border: 1px solid var(--color-border-accent);
+}
+
+.cat_backend {
+  background: rgba(74, 222, 128, 0.08);
+  color: #4ADE80;
+  border-color: rgba(74, 222, 128, 0.25);
+}
+
+.cat_fullstack {
+  background: rgba(251, 191, 36, 0.08);
+  color: #FBBF24;
+  border-color: rgba(251, 191, 36, 0.25);
 }
 
 .cardTitle {
