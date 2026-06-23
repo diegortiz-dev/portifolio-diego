@@ -81,7 +81,16 @@ export default function Footer() {
         {/* Seção Inferior */}
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            © {currentYear} {SITE_CONFIG.name}. Todos os direitos reservados.
+            © {currentYear} {SITE_CONFIG.name}. Construído com{" "}
+            <a
+              href="https://nextjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.techLink}
+            >
+              Next.js
+            </a>
+            .
           </p>
           <button
             className={styles.backToTop}

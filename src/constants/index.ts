@@ -2,7 +2,9 @@
 
 export const SITE_CONFIG = {
   name: "Diego Ortiz",
-  role: "Desenvolvedor Full Stack",
+  role: "Desenvolvedor Backend & Full Stack",
+  shortBio:
+    "Desenvolvedor focado em arquitetura backend, APIs e sistemas escaláveis. Também construo landing pages e sites institucionais como freelancer.",
   email: "ortizdtz@gmail.com",
   github: "https://github.com/diegortiz-dev",
   whatsapp: "https://wa.me/5535910188806",
@@ -41,16 +43,18 @@ export const SOCIAL_LINKS = [
 ] as const
 
 export const TECH_STACK = [
-  { name: "React", category: "frontend" },
-  { name: "Next.js", category: "frontend" },
-  { name: "TypeScript", category: "frontend" },
-  { name: "JavaScript", category: "frontend" },
-  { name: "HTML5", category: "frontend" },
-  { name: "CSS3", category: "frontend" },
-  { name: "Tailwind CSS", category: "frontend" },
   { name: "Node.js", category: "backend" },
   { name: "Python", category: "backend" },
   { name: "MySQL", category: "backend" },
+  { name: "REST APIs", category: "backend" },
+  { name: "JWT", category: "backend" },
+  { name: "TypeScript", category: "frontend" },
+  { name: "JavaScript", category: "frontend" },
+  { name: "React", category: "frontend" },
+  { name: "Next.js", category: "frontend" },
+  { name: "Tailwind CSS", category: "frontend" },
+  { name: "HTML5", category: "frontend" },
+  { name: "CSS3", category: "frontend" },
   { name: "Git", category: "tools" },
   { name: "GitHub", category: "tools" },
 ] as const

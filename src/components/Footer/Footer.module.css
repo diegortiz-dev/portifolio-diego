@@ -47,16 +47,16 @@
 }
 
 .logoAccent {
-  color: var(--color-accent-primary);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 400;
-}
-
-.logo:hover .logoText {
-  color: var(--color-accent-primary);
+  transition: var(--transition-base);
 }
 
 .logo:hover .logoAccent {
-  color: var(--color-text-primary);
+  filter: brightness(1.15);
 }
 
 .tagline {

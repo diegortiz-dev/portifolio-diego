@@ -12,7 +12,7 @@ export default function Icon() {
       <div
         style={{
           fontSize: 20,
-          background: "#09090B",
+          background: "#08080C",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -23,9 +23,9 @@ export default function Icon() {
           fontWeight: "bold",
         }}
       >
-        <span style={{ color: "#7DD3FC" }}>&lt;</span>
+        <span style={{ color: "#A78BFA" }}>&lt;</span>
         <span style={{ color: "#fff" }}>O</span>
-        <span style={{ color: "#7DD3FC" }}>/&gt;</span>
+        <span style={{ color: "#A78BFA" }}>/&gt;</span>
       </div>
     ),
     {

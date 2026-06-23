@@ -2,13 +2,20 @@ import "./globals.css"
 import type { Metadata, Viewport } from "next"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import { Inter, JetBrains_Mono } from "next/font/google"
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google"
 import { SITE_CONFIG } from "@/constants"
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 })
 
 const jetbrainsMono = JetBrains_Mono({
@@ -25,16 +32,18 @@ export const metadata: Metadata = {
   },
   description: SITE_CONFIG.description,
   keywords: [
-    "desenvolvedor",
-    "full stack",
+    "desenvolvedor backend",
+    "desenvolvedor full stack",
+    "freelancer",
+    "node.js",
+    "python",
     "react",
     "nextjs",
     "typescript",
-    "javascript",
+    "api rest",
+    "engenharia de software",
+    "diego ortiz",
     "portfolio",
-    "front-end",
-    "back-end",
-    "web developer",
   ],
   authors: [{ name: SITE_CONFIG.name }],
   creator: SITE_CONFIG.name,
@@ -65,7 +74,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#09090B",
+  themeColor: "#08080C",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -77,7 +86,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="pt-BR"
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="font-sans antialiased">
         <Header />
         {children}

@@ -146,10 +146,11 @@ export default function Contact() {
       <div className={styles.container}>
         {/* Lado Esquerdo - Informações */}
         <div className={styles.info}>
-          <span className={styles.badge}>Contato</span>
+          <span className={styles.badge}>{"// contato"}</span>
           <h2 className={styles.title}>
-            Vamos trabalhar <br />
-            <span className={styles.titleAccent}>juntos?</span>
+            Bora construir
+            <br />
+            <span className={styles.titleAccent}>algo juntos?</span>
           </h2>
           <div className={styles.divider} />
           <p className={styles.description}>
