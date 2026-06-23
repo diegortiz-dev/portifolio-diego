@@ -2,34 +2,6 @@ import { Project } from "@/types/project"
 
 export const projects: Project[] = [
   {
-    id: "focus-flow",
-    title: "Focus Flow",
-    description:
-      "Landing page moderna e responsiva para o FocusFlow — aplicativo de produtividade com técnica Pomodoro.",
-    techs: ["React", "Next.js", "Tailwind CSS"],
-    category: "frontend",
-    github: "https://github.com/diegortiz-dev/focusflow-landing.git",
-    featured: true,
-    image: "/projects/focus-flow.png",
-    imagePosition: "top center",
-    longDescription:
-      "Uma landing page moderna e responsiva para o aplicativo FocusFlow, com foco em design minimalista, micro-interações e otimização para dispositivos móveis. Projeto focado em performance e acessibilidade.",
-  },
-  {
-    id: "investimentos-dashboard",
-    title: "Investimentos Balance",
-    description:
-      "Dashboard moderno e simples para gerenciamento de portfólio de investimentos com rebalanceamento automático.",
-    techs: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-    category: "frontend",
-    github: "https://github.com/diegortiz-dev/portfolio-balance-dashboard.git",
-    featured: true,
-    image: "/projects/investimentos-dashboard.png",
-    imagePosition: "top center",
-    longDescription:
-      "Um dashboard completo para gerenciamento de portfólio de investimentos, com funcionalidades de rebalanceamento automático, visualização de alocação e acompanhamento de performance.",
-  },
-  {
     id: "gapdev",
     title: "GapDev",
     description:
@@ -47,7 +19,9 @@ export const projects: Project[] = [
     category: "fullstack",
     github: "https://github.com/dev-mateus/gapdev",
     demo: "https://gapdev.vercel.app",
-    featured: false,
+    featured: true,
+    image: "/projects/gapdev.png",
+    imagePosition: "top left",
     longDescription:
       "Plataforma de desenvolvimento de carreira movida a IA. Analisa descrições de vagas, compara com o conjunto de habilidades atual do desenvolvedor e identifica lacunas de conhecimento. A partir disso, gera planos de estudo personalizados para acelerar o crescimento profissional. Backend em Python com FastAPI e FastMCP, integração com modelos da Hugging Face para processar vagas e gerar recomendações inteligentes, e persistência em PostgreSQL. Frontend em React, TypeScript e Tailwind CSS.",
   },
@@ -59,9 +33,39 @@ export const projects: Project[] = [
     techs: ["React", "Next.js", "JavaScript", "Tailwind CSS"],
     category: "fullstack",
     github: "https://github.com/rodrigo749/desabandonefocinhos",
-    featured: false,
+    featured: true,
+    image: "/projects/desabandone-focinhos.png",
+    imagePosition: "top center",
     longDescription:
       "Plataforma web para apoiar ONGs de bem-estar animal na gestão de adoções e resgates. Implementa cadastro de animais, busca de pets perdidos e gerenciamento de processos de adoção. Frontend em React e Tailwind CSS, com Next.js para arquitetura da aplicação e rotas de API. Foco em experiência intuitiva e acessível para ONGs, voluntários e potenciais adotantes.",
+  },
+  {
+    id: "focus-flow",
+    title: "Focus Flow",
+    description:
+      "Landing page moderna e responsiva para o FocusFlow — aplicativo de produtividade com técnica Pomodoro.",
+    techs: ["React", "Next.js", "Tailwind CSS"],
+    category: "frontend",
+    github: "https://github.com/diegortiz-dev/focusflow-landing.git",
+    featured: false,
+    image: "/projects/focus-flow.png",
+    imagePosition: "top center",
+    longDescription:
+      "Uma landing page moderna e responsiva para o aplicativo FocusFlow, com foco em design minimalista, micro-interações e otimização para dispositivos móveis. Projeto focado em performance e acessibilidade.",
+  },
+  {
+    id: "investimentos-dashboard",
+    title: "Investimentos Balance",
+    description:
+      "Dashboard moderno e simples para gerenciamento de portfólio de investimentos com rebalanceamento automático.",
+    techs: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    category: "frontend",
+    github: "https://github.com/diegortiz-dev/portfolio-balance-dashboard.git",
+    featured: false,
+    image: "/projects/investimentos-dashboard.png",
+    imagePosition: "top center",
+    longDescription:
+      "Um dashboard completo para gerenciamento de portfólio de investimentos, com funcionalidades de rebalanceamento automático, visualização de alocação e acompanhamento de performance.",
   },
   {
     id: "pi-game",
