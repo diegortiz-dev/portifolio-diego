@@ -64,42 +64,55 @@ export default function Projects() {
               className={styles.featuredCard}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className={styles.featuredImageWrapper}>
-                {project.image ? (
-                  <Image
-                    src={project.image}
-                    alt={`Screenshot do projeto ${project.title}`}
-                    fill
-                    className={styles.featuredImage}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                ) : (
-                  <div className={styles.featuredImagePlaceholder}>
-                    <FolderIcon size={48} />
-                  </div>
-                )}
-                <div className={styles.featuredOverlay}>
-                  <div className={styles.featuredLinks}>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.featuredLink}
-                      aria-label={`Ver código do ${project.title} no GitHub`}
-                    >
-                      <GithubIcon size={20} />
-                    </a>
-                    {project.demo && (
+              <div className={styles.browserWindow}>
+                <div className={styles.browserChrome} aria-hidden="true">
+                  <span className={`${styles.browserDot} ${styles.dotRed}`} />
+                  <span className={`${styles.browserDot} ${styles.dotYellow}`} />
+                  <span className={`${styles.browserDot} ${styles.dotGreen}`} />
+                  <span className={styles.browserUrl}>
+                    {project.demo
+                      ? project.demo.replace(/^https?:\/\//, "")
+                      : `${project.id}.local`}
+                  </span>
+                </div>
+                <div className={styles.featuredImageWrapper}>
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={`Screenshot do projeto ${project.title}`}
+                      fill
+                      className={styles.featuredImage}
+                      style={{ objectPosition: project.imagePosition ?? "top center" }}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  ) : (
+                    <div className={styles.featuredImagePlaceholder}>
+                      <FolderIcon size={48} />
+                    </div>
+                  )}
+                  <div className={styles.featuredOverlay}>
+                    <div className={styles.featuredLinks}>
                       <a
-                        href={project.demo}
+                        href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.featuredLink}
-                        aria-label={`Ver demo do ${project.title}`}
+                        aria-label={`Ver código do ${project.title} no GitHub`}
                       >
-                        <ExternalLinkIcon size={20} />
+                        <GithubIcon size={20} />
                       </a>
-                    )}
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.featuredLink}
+                          aria-label={`Ver demo do ${project.title}`}
+                        >
+                          <ExternalLinkIcon size={20} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

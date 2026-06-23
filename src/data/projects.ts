@@ -11,6 +11,7 @@ export const projects: Project[] = [
     github: "https://github.com/diegortiz-dev/focusflow-landing.git",
     featured: true,
     image: "/projects/focus-flow.png",
+    imagePosition: "top center",
     longDescription:
       "Uma landing page moderna e responsiva para o aplicativo FocusFlow, com foco em design minimalista, micro-interações e otimização para dispositivos móveis. Projeto focado em performance e acessibilidade.",
   },
@@ -24,6 +25,7 @@ export const projects: Project[] = [
     github: "https://github.com/diegortiz-dev/portfolio-balance-dashboard.git",
     featured: true,
     image: "/projects/investimentos-dashboard.png",
+    imagePosition: "top center",
     longDescription:
       "Um dashboard completo para gerenciamento de portfólio de investimentos, com funcionalidades de rebalanceamento automático, visualização de alocação e acompanhamento de performance.",
   },
