@@ -35,7 +35,7 @@ export const projects: Project[] = [
     category: "fullstack",
     github: "https://github.com/rodrigo749/desabandonefocinhos",
     demo: "https://desabandonefocinhos.vercel.app/",
-    image: "/projects/desabandone-focinhos.png",
+    image: "/projects/desabandone-focinhos.jpg",
     imagePosition: "top center",
     featured: true,
     longDescription:
