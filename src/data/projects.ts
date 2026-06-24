@@ -20,7 +20,7 @@ export const projects: Project[] = [
     category: "fullstack",
     github: "https://github.com/dev-mateus/gapdev",
     demo: "https://gapdev.vercel.app",
-    image: "/projects/gapdev.png",
+    image: "/projects/gapdev.jpg",
     imagePosition: "top center",
     featured: true,
     longDescription:
