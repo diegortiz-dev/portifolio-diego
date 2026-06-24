@@ -11,6 +11,7 @@ export const projects: Project[] = [
       "FastAPI",
       "FastMCP",
       "PostgreSQL",
+      "Vite",
       "React",
       "TypeScript",
       "Tailwind CSS",

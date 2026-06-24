@@ -71,7 +71,7 @@ const highlightedCode = `<span class="keyword">export const</span> <span class="
   },
 
   <span class="property">skills</span>: {
-    <span class="property">frontend</span>: [<span class="string">"React"</span>, <span class="string">"Next.js"</span>,<span class="string">"Vue.js"</span>, <span class="string">"JavaScript"</span>, <span class="string">"HTML5"</span>,
+    <span class="property">frontend</span>: [<span class="string">"React"</span>, <span class="string">"Next.js"</span>,<span class="string">"Vite"</span>, <span class="string">"JavaScript"</span>, <span class="string">"HTML5"</span>,
       <span class="string">"TypeScript"</span>, <span class="string">"JavaScript"</span>, <span class="string">"CSS3"</span>, <span class="string">"Tailwind CSS"</span>],
     <span class="property">backend</span>: [<span class="string">"Node.js"</span>, <span class="string">"Python"</span>, <span class="string">"MySQL"</span>, <span class="string">"PostgreSQL"</span>],
     <span class="property">tools</span>: [<span class="string">"Git"</span>, <span class="string">"GitHub"</span>, <span class="string">"Figma"</span>, <span class="string">"Docker"</span>, <span class="string">"Postman"</span>]
