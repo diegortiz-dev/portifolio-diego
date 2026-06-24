@@ -75,7 +75,7 @@ export const projects: Project[] = [
     title: "PI Game",
     description:
       "Jogo mobile de memorização dos dígitos de Pi, com modo Desafio (60s) e modo Prática com dicas opcionais.",
-    techs: ["React Native"],
+    techs: ["React Native", "TypeScript", "Expo"],
     category: "frontend",
     github: "https://github.com/diegortiz-dev/pi-game",
     featured: false,
